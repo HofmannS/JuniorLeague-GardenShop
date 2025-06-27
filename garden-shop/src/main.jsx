@@ -5,13 +5,17 @@ import './App.scss'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import Layout from './components/Layout/Layout.jsx'
+import { Provider } from 'react-redux'
+import  store  from './store'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <Provider store={store}>
+   <StrictMode>
     <BrowserRouter>
-    <Layout>
+     <Layout>
       <App />
-    </Layout>
+     </Layout>
     </BrowserRouter>
-  </StrictMode>
-)
+   </StrictMode>
+  </Provider>
+
