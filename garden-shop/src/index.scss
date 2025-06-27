@@ -1,5 +1,26 @@
+:root {
+  // Цвета
+  --color-bg: #FFFFF1;
+  --color-green: #92A134;
+  --color-txt-black: #424436;
+  --color-txt-white: #ffffff;
+  --color-txt-muted: #8B8B8B;
+  --color-sale: #F26D22;
+  --color-cards: #F2F6D3;
+
+  // Шрифт
+  --font-main: Montserrat, sans-serif;
+
+  // Радиус
+  --radius-small: 6px;
+  --radius-big: 12px;
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-main);
+  
 }
+
