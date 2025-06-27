@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategories } from '../../store/features/categoriesSlice';
-import Skeleton from '../Skeleton/Skeleton';
+import Skeleton from '../Skeleton/SkeletonCategory/Skeleton';
 import "./CategoryPanel.scss"
 import Category from '../Category/Category';
 const CategoryPanel = () => {
