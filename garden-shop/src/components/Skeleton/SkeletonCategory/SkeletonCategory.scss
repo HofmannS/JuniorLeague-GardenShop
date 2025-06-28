@@ -1,12 +1,12 @@
-.skeleton_category_list {
+.skeleton_category__list {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     background-color: #FFFFF1;
   }
   
-  .skeleton_category_item {
-    width: 316px;
+  .skeleton_category__item {
+    max-width: 316px;
     height: 392px;
     background-color: #F2F6D3;
     border-radius: 12px;
