@@ -1,44 +1,51 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategories } from '../../store/features/categoriesSlice';
-import Skeleton from '../Skeleton/SkeletonCategory/Skeleton';
-import "./CategoryPanel.scss"
-import Category from '../Category/Category';
-const CategoryPanel = () => {
-    const dispatch = useDispatch();
+import SkeletonCategory from '../Skeleton/SkeletonCategory/SkeletonCategory';
+import CategoryCard from '../CategoryCard/CategoryCard';
+import Panel from '../Panel/Panel';
+import { useState } from 'react';
 
-    const { categories, loading, error } = useSelector((state) => state.categories);
+const CategoryPanel = ({ item__limit }) => {
+  const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(fetchCategories());
-    }, [dispatch]);
+  const { categories, loading, error } = useSelector((state) => state.categories);
 
-    
-      if (error) {
-        return <div>Error: {error}</div>;
-      }
+  const [randomCategories, setRandomCategories] = useState([])
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      const shuffled = [...categories].sort(() => 0.5 - Math.random())
+      const selected = shuffled.slice(0, item__limit)
+      setRandomCategories(selected)
+    }
+  }, [categories, item__limit])
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <div className='container'>
-        <div className="category_panel_header">
-            <h2 className='category_panel_header_title'>Categories</h2>
-            <div className="button_container">
-            <div className="header_line"></div>
-            <button>All categories</button>
-            </div>
-        </div>
-        <div className="category_panel_list">
-            {loading ? <Skeleton /> : 
-            categories && categories.map((item, index) => (
-                <Category
-                key={index}
-                id={item.id}
-                image={item.image}
-                title={item.title}/>
-            ))}
-            {/* <Skeleton /> */}
-        </div>
-    </div>
+    <Panel
+      title="Categories"
+      items={randomCategories}
+      item_limit={item__limit}
+      buttonText="All categories"
+      isLoading={loading}
+      skeleton={<SkeletonCategory category__limit={item__limit} />}
+      renderItem={(item) => (
+        <CategoryCard
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+        />
+      )}
+    />
   )
 }
 

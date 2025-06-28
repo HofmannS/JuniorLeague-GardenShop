@@ -10,13 +10,11 @@ import store from './store'
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-
     <StrictMode>
       <BrowserRouter>
-        <Layout>
           <App />
-        </Layout>
       </BrowserRouter>
     </StrictMode>
   </Provider>
 )
+
