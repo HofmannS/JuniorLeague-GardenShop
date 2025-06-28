@@ -1,3 +1,8 @@
+.banner__wrapper {
+    background: var(--color-bg);
+    padding-bottom: 80px;
+}
+
 .banner {
     position: relative;
     width: 100%;
@@ -7,7 +12,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    margin-bottom: 80px;
+    
 
     &__image {
         display: none;
