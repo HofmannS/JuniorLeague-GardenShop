@@ -14,8 +14,10 @@ const CategoryPanel = ({ item__limit }) => {
   const [randomCategories, setRandomCategories] = useState([])
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
 
   useEffect(() => {
     if (categories.length > 0) {
