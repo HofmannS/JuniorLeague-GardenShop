@@ -7,7 +7,7 @@
     border: 1px solid var(--color-line);
     border-radius: var(--radius-big);
     gap: 20px;
-    background-color: white;
+    background-color: var(--sale-card);
 
     a {
         text-decoration: none;
@@ -19,7 +19,7 @@
         top: 16px;
         left: 16px;
         background-color: var(--color-sale);
-        color: var(--color-txt-white);
+        color: white;
         font-size: 20px;
         padding: 4px 8px;
         border-radius: var(--radius-small);
@@ -36,14 +36,17 @@
 
         &__favorite,
         &__cart {
-            all: unset;
+            color: var(--color-txt-black);
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 48px;
-            fill: var(--color-txt-white);
-            stroke: black;
+            transition: color 0.3s ease;
         }
+
+        &__favorite:hover,
+        &__cart:hover {
+            color: var(--color-green);
+    }
     }
 
     &__image {
@@ -69,6 +72,8 @@
 
         p {
             font-size: 20px;
+            font-weight: 500;
+            line-height: 130%;
             color: var(--color-txt-black);
             white-space: nowrap;
             overflow: hidden;
@@ -83,16 +88,19 @@
         align-items: baseline;
         gap: 16px;
         margin: 0 32px 32px 32px;
+        
+
 
         &__new {
+            font-weight: 600;
             font-size: 40px;
+            line-height: 110%;
             color: var(--color-txt-black);
         }
 
         &__old {
             font-size: 20px;
-            text-decoration: line-through;
-            color: var(--color-txt-muted);
+            
         }
 
     }

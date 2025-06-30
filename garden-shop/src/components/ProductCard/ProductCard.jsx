@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaRegHeart } from "react-icons/fa";
-import { SlHandbag } from "react-icons/sl";
+import { SlHandbag, SlHeart } from "react-icons/sl";
 import './ProductCard.scss'
 
 const ProductCard = ({ id, image, title, price, discont_price }) => {
@@ -18,8 +17,8 @@ const ProductCard = ({ id, image, title, price, discont_price }) => {
                 <div className="product__item__image">
                     <img src={`${import.meta.env.VITE_APP_API_URL}${image}`} alt={title} />
                     <div className="icons">
-                        <button className='icons__favorite'><FaRegHeart /></button>
-                        <button className='icons__cart'><SlHandbag /></button>
+                        <button className='icons__favorite'><SlHeart size={38}  /></button>
+                        <button className='icons__cart'><SlHandbag size={38} /></button>
                     </div>
                     {discont_percent && <div className="product__item__discont">{discont_percent}%</div>}
                 </div>
@@ -28,7 +27,7 @@ const ProductCard = ({ id, image, title, price, discont_price }) => {
                 </div>
                 <div className="product__item__price">
                     <p className='product__item__price__new'>${discont_price && discont_price}</p>
-                    <p className='product__item__content__price__old'>${price}</p>
+                    <p className='product__item__content__price__old' style={{ textDecoration: "line-through", color: "var(--color-txt-muted)" }}>${price}</p>
                 </div>
             </Link>
 

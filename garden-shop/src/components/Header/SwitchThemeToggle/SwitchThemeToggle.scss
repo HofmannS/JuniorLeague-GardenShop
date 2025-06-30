@@ -1,0 +1,52 @@
+.toggle {
+  width: 60px;
+  height: 32px;
+  background-color: #8B8B8B;
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &__circle {
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s ease;
+  }
+
+  &.active {
+    background-color: white;
+
+    .toggle__circle {
+      left: 30px;
+      background-color: #8B8B8B;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: white;
+    
+
+    &--left {
+      left: 6px;
+      bottom: 0px;
+    }
+
+    &--right {
+      right: 6px;
+      bottom: 0px;
+    }
+  }
+
+  &.active .toggle__icon {
+    color: #8B8B8B;
+  }
+}

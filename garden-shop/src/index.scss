@@ -8,6 +8,7 @@
   --color-sale: #F26D22;
   --color-cards: #F2F6D3;
   --color-line: #DDDDDD;
+  --sale-card: #ffffff;
 
   // Шрифт
   --font-main: Montserrat, sans-serif;
@@ -15,6 +16,18 @@
   // Радиус
   --radius-small: 6px;
   --radius-big: 12px;
+}
+
+.dark_theme {
+  --color-bg: #424436;
+  --color-green: #92A134;
+  --color-txt-black: #ffffff;
+  --color-txt-white: #424436;
+  --color-txt-muted: #8B8B8B;
+  --color-sale: #F26D22;
+  --color-cards: #383A2C;
+  --color-line: #8B8B8B;
+  --sale-card: #383A2C;
 }
 
 *{
