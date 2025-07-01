@@ -1,17 +1,23 @@
 import React from 'react'
-import Logo from './Logo'
+import { SlHandbag, SlHeart } from "react-icons/sl";
 import ThemeToggle from './SwitchThemeToggle/SwitchThemeToggle'
-import Navbar from './Navbar'
+import Navbar from './Navbar/Navbar'
 import './Header.scss'
-import Icons from './Icons'
+import logoIcon from '../../assets/Images/logo.svg'
+
 
 const Header = () => {
     return (
         <header className='header container'>
-            <Logo />
+            <div className='header__logo'>
+                <img src={logoIcon} alt="Логотип" />
+            </div>
+            <div className='header__icons'>
+                <button className='header__icons-favorite'><SlHeart size={38} /></button>
+                <button className='header__icons-cart'><SlHandbag size={38} /></button>
+            </div>
             <ThemeToggle />
             <Navbar />
-            <Icons />
         </header>
     )
 }
