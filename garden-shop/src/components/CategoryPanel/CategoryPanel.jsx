@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCategories } from '../../store/features/categoriesSlice';
-import SkeletonCategory from '../Skeleton/SkeletonCategory/SkeletonCategory';
-import CategoryCard from '../CategoryCard/CategoryCard';
-import Panel from '../Panel/Panel';
+import { fetchCategories } from '@store/features/categoriesSlice';
+import SkeletonCategory from '@components/Skeleton/SkeletonCategory/SkeletonCategory';
+import CategoryCard from '@components/CategoryCard/CategoryCard';
+import Panel from '@components/Panel/Panel';
 import { useState } from 'react';
 
 const CategoryPanel = ({ item__limit }) => {

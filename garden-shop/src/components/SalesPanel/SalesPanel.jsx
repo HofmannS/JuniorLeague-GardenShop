@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '../../store/features/productSlice';
-import Panel from '../Panel/Panel';
-import ProductCard from '../ProductCard/ProductCard';
+import { fetchProducts } from '@store/features/productSlice';
+import Panel from '@components/Panel/Panel';
+import ProductCard from '@components/ProductCard/ProductCard';
 import { useMemo } from 'react';
 
 const SalesPanel = ({ item__limit }) => {
