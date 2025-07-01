@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { SlHandbag, SlHeart } from "react-icons/sl";
-import '@ProductCard.scss'
+import './ProductCard.scss'
 
 const ProductCard = ({ id, image, title, price, discont_price }) => {
     let discont_percent = null

@@ -1,6 +1,6 @@
 import React from 'react'
-import '@Panel.scss'
-import LineButton from '@LineButton/LineButton'
+import './Panel.scss'
+import LineButton from '@components/LineButton/LineButton'
 
 const Panel = ({ title, items, item_limit, renderItem, buttonText, link,  isLoading, skeleton, children }) => {
   

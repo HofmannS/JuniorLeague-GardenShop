@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '@CategoryCard.scss'
+import './CategoryCard.scss'
 
 const CategoryCard = ({ id, image, title }) => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import '@LineButton.scss'
+import './LineButton.scss'
 import { Link } from 'react-router-dom'
 
 const LineButton = ({ name, link }) => {

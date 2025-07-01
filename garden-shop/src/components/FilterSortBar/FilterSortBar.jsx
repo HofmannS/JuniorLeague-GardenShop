@@ -1,5 +1,5 @@
 import React from 'react'
-import '@FilterSortBar.scss'
+import './FilterSortBar.scss'
 
 const FilterSortBar = ({
     priceFrom,

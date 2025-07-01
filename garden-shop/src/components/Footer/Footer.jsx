@@ -1,5 +1,5 @@
 import React from 'react'
-import '@Footer.scss'
+import './Footer.scss'
 import { AiFillInstagram } from "react-icons/ai";
 import { RiWhatsappFill } from "react-icons/ri";
 
