@@ -1,9 +1,9 @@
 import React from 'react'
-import Logo from './Logo'
-import ThemeToggle from './SwitchThemeToggle/SwitchThemeToggle'
-import Navbar from './Navbar'
-import './Header.scss'
-import Icons from './Icons'
+import Logo from '@Logo'
+import ThemeToggle from '@SwitchThemeToggle/SwitchThemeToggle'
+import Navbar from '@Navbar'
+import '@Header.scss'
+import Icons from '@Icons'
 
 const Header = () => {
     return (

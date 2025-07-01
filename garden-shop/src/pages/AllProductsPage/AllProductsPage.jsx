@@ -1,8 +1,11 @@
 import React from 'react'
+import ProductPanel from '@components/ ProductsPanel/ ProductsPanel'
 
 const AllProductsPage = () => {
   return (
-    <div>AllProductsPage</div>
+    <div>
+      <ProductPanel />
+    </div>
   )
 }
 

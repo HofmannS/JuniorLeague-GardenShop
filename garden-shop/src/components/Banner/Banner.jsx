@@ -1,6 +1,6 @@
-import BannerImage from '../../assets/Banner.jpg'
+import BannerImage from '@assets/Banner.jpg'
 
-import "./Banner.scss"
+import "@Banner.scss"
 
 const Banner = () => {
     return (

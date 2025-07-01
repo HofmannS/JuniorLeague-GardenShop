@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineSun } from "react-icons/ai";
 import { IoMoonOutline } from "react-icons/io5";
-import './SwitchThemeToggle.scss'
+import '@SwitchThemeToggle.scss'
 
 const SwitchThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {

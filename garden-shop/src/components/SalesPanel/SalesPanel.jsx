@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '../../store/features/productSlice';
-import Panel from '../Panel/Panel';
-import ProductCard from '../ProductCard/ProductCard';
+import { fetchProducts } from '@store/features/productSlice';
+import Panel from '@Panel/Panel';
+import ProductCard from '@ProductCard/ProductCard';
 import { useMemo } from 'react';
+import SkeletonProduct from '@Skeleton/SkeletonProduct/SkeletonProduct';
 
 const SalesPanel = ({ item__limit }) => {
     const dispatch = useDispatch();
@@ -25,8 +26,6 @@ const SalesPanel = ({ item__limit }) => {
           dispatch(fetchProducts());
         }
       }, [dispatch, products.length]);
-      console.log('Products: ',products);
-      console.log('Discounted Products: ',discontedProducts);
       
     useEffect(() => {
         if (discontedProducts.length > 0) {
@@ -45,8 +44,9 @@ const SalesPanel = ({ item__limit }) => {
             items={randomDiscontedProducts}
             item_limit={item__limit}
             buttonText="All sales"
+            link="/discount"
             isLoading={loading}
-            // skeleton={<SkeletonProducts products__limit={item__limit} />}
+            skeleton={<SkeletonProduct products__limit={item__limit} />}
             renderItem={(item) => (
                 <ProductCard
                     key={item.id}
