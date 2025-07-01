@@ -15,8 +15,8 @@ const Footer = () => {
             <div className="footer__card">
                 <p className="footer__label">Socials</p>
                 <div className="footer__icons">
-            <AiFillInstagram size={38} color='var(--color-txt-black)' />
-            <RiWhatsappFill size={38} color='var(--color-txt-black)' />
+            <AiFillInstagram size={43} color='var(--color-txt-black)' />
+            <RiWhatsappFill size={43} color='var(--color-txt-black)' />
           </div>
             </div>
             <div className="footer__card">

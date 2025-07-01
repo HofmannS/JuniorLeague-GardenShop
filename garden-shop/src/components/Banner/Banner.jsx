@@ -11,8 +11,10 @@ const Banner = () => {
                         className='banner__image-item' />
                 </div>
                 <div className='banner__content'>
+                    <div className="container">
                     <h1 className='banner__title'>Amazing Discounts on Garden Products!</h1>
                     <button className='banner__button'>Check out</button>
+                    </div>
                 </div>
             </div>
         </div>

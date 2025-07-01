@@ -27,7 +27,14 @@
     line-height: 130%;
     color: var(--color-txt-muted);
     margin-bottom: 16px;
+
+    
   }
+
+  .footer__icons {
+      display: flex;
+      gap: 16px;
+    }
 
   .footer__info {
     font-weight: 600;
@@ -41,6 +48,7 @@
 
   &__map {
     margin-top: 32px;
+    margin-bottom: 40px;
 
     iframe {
       width: 100%;
