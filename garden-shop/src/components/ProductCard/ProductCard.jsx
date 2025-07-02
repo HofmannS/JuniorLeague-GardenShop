@@ -9,7 +9,7 @@ const [isInCart, setIsInCart] = useState(false);
 
   let discont_percent = null;
   if (discont_price !== null) {
-    discont_percent = (((price - discont_price) / price) * 100).toFixed(2);
+    discont_percent = (((price - discont_price) / price) * 100).toFixed(1);
   }
 
   useEffect(() => {
@@ -74,18 +74,16 @@ const [isInCart, setIsInCart] = useState(false);
           <p>{title}</p>
         </div>
         <div className="product__item__price">
-          <p className="product__item__price__new">
-            ${discont_price && discont_price}
-          </p>
-          <p
-            className="product__item__content__price__old"
-            style={{
-              textDecoration: "line-through",
-              color: "var(--color-txt-muted)",
-            }}
-          >
-            ${price}
-          </p>
+          {discont_price ? (
+    <>
+      <p className="product__item__price__new">${discont_price}</p>
+      <p className="product__item__price__old">
+        ${price}
+      </p>
+    </>
+  ) : (
+    <p className="product__item__price__new">${price}</p>
+  )}
         </div>
       </Link>
       <div className="icons">
