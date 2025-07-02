@@ -5,7 +5,7 @@ function SkeletonCategory({category__limit}) {
   return (
     <div className="skeleton__category__list">
   {Array.from({ length: category__limit }).map((_, index) => (
-    <div keyS={index} className="skeleton__category__item"></div>
+    <div key={index} className="skeleton__category__item"></div>
   ))}
 </div>
   )
