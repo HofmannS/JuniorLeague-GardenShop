@@ -6,6 +6,7 @@ import Panel from '@components/Panel/Panel';
 import './CategoriesPage.scss'
 import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs';
 
+
 const CategoriesPage = () => {
 
   const dispatch = useDispatch();
