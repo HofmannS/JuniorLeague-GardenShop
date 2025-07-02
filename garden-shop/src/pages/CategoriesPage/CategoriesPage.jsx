@@ -1,9 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '@store/features/categoriesSlice';
+import CategoryCard from '@components/CategoryCard/CategoryCard';
+import Panel from '@components/Panel/Panel';
+import './CategoriesPage.scss'
 
 const CategoriesPage = () => {
+
+  const dispatch = useDispatch();
+
+  const { categories, loading, error } = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <div>CategoriesPage</div>
+    <div className='container__categories'>
+      <Panel
+        title="Categories"
+        link="/categories"
+        items={categories}
+        isLoading={loading}
+        renderItem={(item) => (
+          <CategoryCard
+            key={item.id}
+            id={item.id}
+            image={item.image}
+            title={item.title}
+          />
+        )}
+      />
+    </div>
   )
+
 }
 
 export default CategoriesPage
