@@ -1,5 +1,5 @@
 import React from 'react'
-import '@SkeletonProduct.scss'
+import './SkeletonProduct.scss'
 
 function SkeletonProduct({product__limit}) {
   return (
