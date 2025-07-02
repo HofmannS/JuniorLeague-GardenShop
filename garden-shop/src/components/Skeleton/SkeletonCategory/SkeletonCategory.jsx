@@ -1,5 +1,5 @@
 import React from 'react'
-import '@SkeletonCategory.scss'
+import './SkeletonCategory.scss'
 
 function SkeletonCategory({category__limit}) {
   return (
