@@ -23,33 +23,50 @@
         border-radius: var(--radius-small);
     }
 
-    .icons {
+    .icons{
         position: absolute;
         top: 16px;
         right: 16px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        fill: white;
-        transition: fill 0.3s, color 0.3s;
+    }
+    
+    .icons__button {
+        
+        width: 38px;
+        height: 38px;
+        border: none;
+        background: transparent;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        transition: background-image 0.3s ease;
 
-        button {
-            background-color: var(--color-bg);
-            color: var(--color-txt-black);
-            border-radius: 50%;
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
+        &.favorite {
+            background-image: url('../../assets/Images/icons/basket=like.png');
+
+            &:hover {
+            background-image: url('../../assets/Images/icons/basket=likehover.png');
+            }
+
+            &.active {
+            background-image: url('../../assets/Images/icons/basket=liked.png');
+            }
         }
 
-        button:hover {
-            background-color: var(--sale-card);
-            color: var(--color-sale);
-    }
+        &.cart {
+            background-image: url('../../assets/Images/icons/basket=card-empty.png');
+
+            &:hover {
+            background-image: url('../../assets/Images/icons/basket=card-hover.png');
+            }
+
+            &.active {
+            background-image: url('../../assets/Images/icons/basket=card-full.png');
+            }
+        }
 
 
     }

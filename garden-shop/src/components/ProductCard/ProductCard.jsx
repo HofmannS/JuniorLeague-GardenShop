@@ -1,16 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SlHandbag, SlHeart } from "react-icons/sl";
 import "./ProductCard.scss";
 
 const ProductCard = ({ id, image, title, price, discont_price }) => {
+const [isFavorite, setIsFavorite] = useState(false);
+const [isInCart, setIsInCart] = useState(false);
+
   let discont_percent = null;
   if (discont_price !== null) {
     discont_percent = (((price - discont_price) / price) * 100).toFixed(2);
   }
 
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [isInCart, setIsInCart] = useState(false);
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    setIsFavorite(favorites.includes(id));
+    setIsInCart(cart.includes(id));
+  }, [id]);
+  
+
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    let updatedFavorites;
+
+    if (favorites.includes(id)) {
+      updatedFavorites = favorites.filter((favId) => favId !== id);
+    } else {
+      updatedFavorites = [...favorites, id];
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    setIsFavorite(!isFavorite);
+  };
+
+  const toggleCart = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let updatedCart;
+
+    if (cart.includes(id)) {
+      updatedCart = cart.filter((cartId) => cartId !== id);
+    } else {
+      updatedCart = [...cart, id];
+    }
+
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setIsInCart(!isInCart);
+  };
+
 
   return (
     <div className="product__item">
@@ -45,26 +89,14 @@ const ProductCard = ({ id, image, title, price, discont_price }) => {
         </div>
       </Link>
       <div className="icons">
-        <button className="icons__favorite">
-          <SlHeart
-            size={30}
-            color={isFavorite ? "var(--color-sale)" : ""}
-            onClick={(e) => {
-            e.stopPropagation();
-            setIsFavorite(!isFavorite);
-        }}
-          />
-        </button>
-        <button className="icons__cart">
-          <SlHandbag
-            size={30}
-            color={isInCart ? "var(--color-sale)" : ""}
-            onClick={(e) => {
-            e.stopPropagation();
-            setIsInCart(!isInCart);
-        }}
-          />
-        </button>
+        <button
+          className={`icons__button favorite ${isFavorite ? "active" : ""}`}
+          onClick={toggleFavorite}
+        ></button>
+        <button
+          className={`icons__button cart ${isInCart ? "active" : ""}`}
+          onClick={toggleCart}
+        ></button>
       </div>
     </div>
   );
