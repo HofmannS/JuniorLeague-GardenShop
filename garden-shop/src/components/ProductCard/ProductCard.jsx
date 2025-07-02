@@ -26,9 +26,17 @@ const ProductCard = ({ id, image, title, price, discont_price }) => {
                     <p>{title}</p>
                 </div>
                 <div className="product__item__price">
-                    <p className='product__item__price__new'>${discont_price && discont_price}</p>
-                    <p className='product__item__content__price__old' style={{ textDecoration: "line-through", color: "var(--color-txt-muted)" }}>${price}</p>
-                </div>
+  {discont_price ? (
+    <>
+      <p className="product__item__price__new">${discont_price}</p>
+      <p className="product__item__price__old">
+        ${price}
+      </p>
+    </>
+  ) : (
+    <p className="product__item__price__new">${price}</p>
+  )}
+</div>
             </Link>
 
         </div>

@@ -41,7 +41,7 @@
         &__favorite:hover,
         &__cart:hover {
             color: var(--color-green);
-    }
+        }
     }
 
     &__image {
@@ -83,7 +83,7 @@
         align-items: baseline;
         gap: 16px;
         margin: 0 32px 32px 32px;
-        
+
 
 
         &__new {
@@ -95,7 +95,8 @@
 
         &__old {
             font-size: 20px;
-            
+            text-decoration: line-through;
+            color: var(--color-txt-muted);
         }
 
     }

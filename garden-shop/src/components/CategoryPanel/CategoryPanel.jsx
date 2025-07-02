@@ -37,6 +37,7 @@ const CategoryPanel = ({ item__limit }) => {
       items={randomCategories}
       item_limit={item__limit}
       buttonText="All categories"
+      link="/categories"
       isLoading={loading}
       skeleton={<SkeletonCategory category__limit={item__limit} />}
       renderItem={(item) => (

@@ -1,13 +1,14 @@
-.skeleton_category__list {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #FFFFF1;
+.skeleton__category__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 32px;
+  background: var(--color-bg);
+  padding-bottom: 80px;
   }
   
   .skeleton_category__item {
     max-width: 316px;
     height: 392px;
-    background-color: #F2F6D3;
-    border-radius: 12px;
+    background: var(--color-cards);
+    border-radius: var(--radius-big);
   }
