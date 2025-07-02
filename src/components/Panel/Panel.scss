@@ -1,0 +1,23 @@
+.panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding-bottom: 40px;
+    background: var(--color-bg);
+    color: var(--color-txt-black);
+  
+    &__title {
+      font-size: 64px;
+    }
+  }
+  
+  .panel__list {
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    background: var(--color-bg);
+    padding-bottom: 80px;
+  }
+  
