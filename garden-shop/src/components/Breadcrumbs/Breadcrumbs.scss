@@ -1,0 +1,25 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    cursor: pointer;
+    font-weight: 500;
+
+    &__item {
+        border: 1px solid var(--color-line);
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: var(--radius-small);
+        position: relative;
+    }
+
+    &__link {
+        color: var(--color-txt-muted);
+    }
+
+    &__current {
+        color: var(--color-txt-black);
+        cursor: default;
+    }
+}

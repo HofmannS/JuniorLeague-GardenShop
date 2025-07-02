@@ -4,6 +4,7 @@ import { fetchCategories } from '@store/features/categoriesSlice';
 import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import './CategoriesPage.scss'
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs';
 
 const CategoriesPage = () => {
 
@@ -23,6 +24,7 @@ const CategoriesPage = () => {
 
   return (
     <div className='container__categories'>
+      <Breadcrumbs />
       <Panel
         title="Categories"
         link="/categories"
