@@ -1,3 +1,5 @@
+@import '../../styles/_mixin.scss';
+
 .footer {
   background: var(--color-bg);
     
@@ -12,8 +14,14 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: 780px 548px;
+    grid-template-columns: minmax(400px, 780px) minmax(229px, 1fr);
     gap: 32px;
+    align-items: stretch;
+    
+
+    @include respond(768) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__card {
@@ -21,29 +29,33 @@
     border-radius: var(--radius-big);
     padding: 32px;
 
-    .footer__label {
+    &.card:last-child {
+      padding: 62px;
+    }
+  
+  }
+
+  &__label {
     font-weight: 500;
     font-size: 20px;
     line-height: 130%;
     color: var(--color-txt-muted);
     margin-bottom: 16px;
-
-    
   }
 
-  .footer__icons {
+  &__icons {
       display: flex;
       gap: 16px;
     }
 
-  .footer__info {
+  &__info {
     font-weight: 600;
-    font-size: 40px;
+    @include clamp(font-size, 28px, 3vw, 40px);
     line-height: 110%;
     color: var(--color-txt-black);
 
   }
-  }
+  
 
 
   &__map {
@@ -57,4 +69,5 @@
       border-radius: var(--radius-big);
     }
   }
+
 }
