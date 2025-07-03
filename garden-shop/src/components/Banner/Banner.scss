@@ -1,3 +1,6 @@
+@import "../../styles/_mixin.scss";
+
+
 .banner__wrapper {
     background: var(--color-bg);
     padding-bottom: 80px;
@@ -10,7 +13,8 @@
 
     .banner__image {
         width: 100%;
-        display: block;
+        // display: block;
+        object-fit: cover;
     }
 
     .banner__bg {
@@ -20,29 +24,52 @@
         position: absolute;
         top: 0;
 
-        .banner__content {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            display: flex;
-            flex-direction: column;
-            gap: 24px; // Отступ между заголовком и кнопкой
+        .container {
+            position: relative;
 
-            .banner__title {
-                font-size: 96px;
-                color: var( --color-txt-white);
-                font-weight: 700;
+            .banner__content {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                max-width: 1100px;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+
+                .banner__title {
+                    font-size: 96px;
+                    color: var(--color-txt-white);
+                    font-weight: 700;
+                    line-height: 110%;
+
+                    @include respond(1000) {
+                        font-size: 90px
+                    }
+
+                    @include respond(768) {
+                        font-size: 68px
+                    }
+
+                    @include respond(480) {
+                        font-size: 60px
+                    }
+                    @include respond(360) {
+                        font-size: 52px
+                    };
+                }
+
+                .banner__btn {
+                    align-self: flex-start;
+                    padding: 16px 56px;
+                    border-radius: var(--radius-small);
+                    background-color: var(--color-green);
+                    color: var(--color-txt-white);
+                    font-size: 20px;
+                    font-weight: 600;
+
+                }
             }
-            .banner__btn {
-                padding: 16px 56px;
-                gap: 10px;
-                border-radius: var(--radius-small);
-                background-color: var(--color-green);
-                color: var( --color-txt-white);
-                font-size: 20px;
-                font-weight: 600;
-                line-height: 130%;                
-            }
+
         }
     }
 }
