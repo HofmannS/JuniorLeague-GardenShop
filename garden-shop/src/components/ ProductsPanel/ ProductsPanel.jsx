@@ -7,14 +7,14 @@ import ProductCard from '@components/ProductCard/ProductCard';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
-const ProductsPanel = ({ item__limit }) => {
+const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, hideDiscountFilter = false, title = "All products" }) => {
     const dispatch = useDispatch();
 
     const { products, loading, error } = useSelector((state) => state.products);
 
     const [priceFrom, setPriceFrom] = useState('')
     const [priceTo, setPriceTo] = useState('')
-    const [onlyDiscounted, setOnlyDiscounted] = useState(false)
+    const [onlyDiscounted, setOnlyDiscounted] = useState(showOnlyDiscounted)
     const [sortMethod, setSortMethod] = useState('default')
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const ProductsPanel = ({ item__limit }) => {
     }
     return (
         <Panel
-            title="All products"
+            title={title}
             items={filteredAndSortedProducts}
             item_limit={item__limit}
             isLoading={loading}
@@ -90,6 +90,7 @@ const ProductsPanel = ({ item__limit }) => {
                 setOnlyDiscounted={setOnlyDiscounted}
                 sortMethod={sortMethod}
                 setSortMethod={setSortMethod}
+                hideDiscountFilter={hideDiscountFilter}
             />
         </Panel>
     )
