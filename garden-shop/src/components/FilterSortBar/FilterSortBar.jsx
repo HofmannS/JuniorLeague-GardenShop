@@ -9,7 +9,8 @@ const FilterSortBar = ({
     onlyDiscounted,
     setOnlyDiscounted,
     sortMethod,
-    setSortMethod
+    setSortMethod,
+    hideDiscountFilter = false
 }) => {
     return (
         <div className="filter__sort-bar">
@@ -28,6 +29,7 @@ const FilterSortBar = ({
                     onChange={(e) => setPriceTo(e.target.value)}
                 />
             </div>
+            {!hideDiscountFilter && (
             <div className="filter__sort-bar__container">
                 <label>
                     <p className='filter__sort-bar__container__titles'>Discounted only</p>
@@ -38,6 +40,7 @@ const FilterSortBar = ({
                     />
                 </label>
             </div>
+            )}
             <div className="filter__sort-bar__container">
                 <p className='filter__sort-bar__container__titles'>Sorted</p>
                 <select value={sortMethod} onChange={(e) => setSortMethod(e.target.value)}>
