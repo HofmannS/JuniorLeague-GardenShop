@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";;
 
 const initialState = {
   products: [],
   productsByDiscount: [],
   productsByCategory: [],
-  categoryTitle: '', 
+  categoryTitle: '',
   loading: false,
   error: null,
 };
@@ -80,7 +80,6 @@ const productsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-      
   },
 });
 

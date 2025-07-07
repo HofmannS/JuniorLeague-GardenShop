@@ -1,5 +1,6 @@
 import React from 'react'
 import './FilterSortBar.scss'
+import CustomSelect from '@components/FilterSortBar/CustomSelect/CustomSelect'
 
 const FilterSortBar = ({
     priceFrom,
@@ -12,6 +13,14 @@ const FilterSortBar = ({
     setSortMethod,
     hideDiscountFilter = false
 }) => {
+
+    const sortOptions = [
+        { value: 'default', label: 'by default' },
+        { value: 'newest', label: 'newest' },
+        { value: 'price-asc', label: 'price: high-low' },
+        { value: 'price-desc', label: 'price: low-high' },
+    ]
+
     return (
         <div className="filter__sort-bar">
             <div className="filter__sort-bar__container">
@@ -30,25 +39,24 @@ const FilterSortBar = ({
                 />
             </div>
             {!hideDiscountFilter && (
-            <div className="filter__sort-bar__container">
-                <label>
-                    <p className='filter__sort-bar__container__titles'>Discounted only</p>
-                    <input
-                        type="checkbox"
-                        checked={onlyDiscounted}
-                        onChange={(e) => setOnlyDiscounted(e.target.checked)}
-                    />
-                </label>
-            </div>
+                <div className="filter__sort-bar__container">
+                    <label>
+                        <p className='filter__sort-bar__container__titles'>Discounted only</p>
+                        <input
+                            type="checkbox"
+                            checked={onlyDiscounted}
+                            onChange={(e) => setOnlyDiscounted(e.target.checked)}
+                        />
+                    </label>
+                </div>
             )}
             <div className="filter__sort-bar__container">
                 <p className='filter__sort-bar__container__titles'>Sorted</p>
-                <select value={sortMethod} onChange={(e) => setSortMethod(e.target.value)}>
-                    <option value="default">by default</option>
-                    <option value="alphabet">By alphabet</option>
-                    <option value="price-asc">By price ↑</option>
-                    <option value="price-desc">By price ↓</option>
-                </select>
+                <CustomSelect
+                    options={sortOptions}
+                    value={sortMethod}
+                    onChange={setSortMethod}
+                />
             </div>
         </div>
     )
