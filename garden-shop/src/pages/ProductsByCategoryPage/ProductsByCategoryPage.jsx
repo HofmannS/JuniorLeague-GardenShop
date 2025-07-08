@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchProductsByCategory } from '@store/features/productSlice';
 import ProductsPanel from '@components/ProductsPanel/ProductsPanel';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const ProductsByCategoryPage = () => {
     const { categoryId } = useParams();
@@ -19,10 +20,13 @@ const ProductsByCategoryPage = () => {
   if (error) return <p>Ошибка: {error}</p>;
 
     return (
+      <div>
+      <Breadcrumbs breadcrumbTitle={{[categoryId]: categoryTitle}} />
         <ProductsPanel
           customProducts={productsByCategory}
           title={categoryTitle}
         />
+        </div>
     );
 };
 

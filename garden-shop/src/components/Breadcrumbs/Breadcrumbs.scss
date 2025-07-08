@@ -1,7 +1,7 @@
 .breadcrumbs {
     display: flex;
     align-items: center;
-    gap: 16px;
+    // gap: 16px;
     padding: 16px 0;
     cursor: pointer;
     font-weight: 500;
@@ -12,6 +12,23 @@
         font-size: 16px;
         border-radius: var(--radius-small);
         position: relative;
+
+
+        &:not(:first-child) {
+            margin-left: 15px;
+
+            &::before {
+                content: '';
+                top: 50%;
+                position: absolute;
+                left: -16px;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 1px;
+                background-color: var(--color-line);
+
+            }
+        }
     }
 
     &__link {
