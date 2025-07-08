@@ -4,7 +4,7 @@ import ProductPanel from '@components/ProductsPanel/ProductsPanel'
 const AllProductsPage = () => {
   return (
     <div>
-      <ProductPanel />
+      <ProductPanel title='All products' forceReload={true} />
     </div>
   )
 }
