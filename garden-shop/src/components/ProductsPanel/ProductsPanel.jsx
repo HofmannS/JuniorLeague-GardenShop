@@ -7,31 +7,31 @@ import ProductCard from '@components/ProductCard/ProductCard';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
-const ProductsPanel = ({ 
-    item__limit, 
-    customProducts = null, 
-    title = 'All products'  
-}) => {
+
+const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavorites = false, hideDiscountFilter = false, title, forceReload = false}) => {
+
     const dispatch = useDispatch();
 
-    const { products: allProducts, loading, error } = useSelector((state) => state.products);
-    const products = customProducts !== null ? customProducts : allProducts;
-    
-
+    const { products, loading, error } = useSelector((state) => state.products);
 
     const [priceFrom, setPriceFrom] = useState('')
     const [priceTo, setPriceTo] = useState('')
-    const [onlyDiscounted, setOnlyDiscounted] = useState(false)
+    const [onlyDiscounted, setOnlyDiscounted] = useState(showOnlyDiscounted)
     const [sortMethod, setSortMethod] = useState('default')
 
     useEffect(() => {
-        if (!customProducts && allProducts.length === 0) {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, allProducts.length, customProducts]);
+        if (forceReload || products.length === 0) {
+          dispatch(fetchProducts());
+        }
+      }, [dispatch, products.length, forceReload]);
 
     const getFilteredAndSortedProducts = () => {
         let filtered = [...products]
+
+        if (showOnlyFavorites) {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+            filtered = filtered.filter(item => favorites.includes(item.id))
+        }
 
         if (priceFrom) {
             filtered = filtered.filter(item => item.price >= Number(priceFrom))
@@ -46,8 +46,8 @@ const ProductsPanel = ({
         }
 
         switch (sortMethod) {
-            case 'alphabet':
-                filtered.sort((a, b) => a.title.localeCompare(b.title))
+            case 'newest':
+                filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                 break
             case 'price-asc':
                 filtered.sort((a, b) => (a.discont_price ?? a.price) - (b.discont_price ?? b.price))
@@ -73,7 +73,7 @@ const ProductsPanel = ({
             title={title}
             items={filteredAndSortedProducts}
             item_limit={item__limit}
-            isLoading={!customProducts && loading}
+            isLoading={loading}
             skeleton={<SkeletonProduct products__limit={item__limit} />}
             renderItem={(item) => (
                 <ProductCard
@@ -87,17 +87,18 @@ const ProductsPanel = ({
 
                 />
             )}
-        >
-            <FilterSortBar
-                priceFrom={priceFrom}
-                setPriceFrom={setPriceFrom}
-                priceTo={priceTo}
-                setPriceTo={setPriceTo}
-                onlyDiscounted={onlyDiscounted}
-                setOnlyDiscounted={setOnlyDiscounted}
-                sortMethod={sortMethod}
-                setSortMethod={setSortMethod}
-            />
+        >            
+                <FilterSortBar
+                    priceFrom={priceFrom}
+                    setPriceFrom={setPriceFrom}
+                    priceTo={priceTo}
+                    setPriceTo={setPriceTo}
+                    onlyDiscounted={onlyDiscounted}
+                    setOnlyDiscounted={setOnlyDiscounted}
+                    sortMethod={sortMethod}
+                    setSortMethod={setSortMethod}
+                    hideDiscountFilter={hideDiscountFilter}
+                />            
         </Panel>
     )
 }

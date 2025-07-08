@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductsPanel from "../../components/ ProductsPanel/ ProductsPanel"
+import ProductsPanel from "@components/ProductsPanel/ProductsPanel"
 
 const FavoritesPage = () => {
   return (

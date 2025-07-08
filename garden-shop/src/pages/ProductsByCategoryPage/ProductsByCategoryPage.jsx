@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchProductsByCategory } from '@store/features/productSlice';
-import ProductsPanel from '@components/ProductsPanel/ProductsPanel';
+import ProductsByCategoryPanel from '@components/ProductsByCategoryPanel/ProductsByCategoryPanel';
 
 const ProductsByCategoryPage = () => {
     const { categoryId } = useParams();
@@ -19,7 +19,7 @@ const ProductsByCategoryPage = () => {
   if (error) return <p>Ошибка: {error}</p>;
 
     return (
-        <ProductsPanel
+        <ProductsByCategoryPanel
           customProducts={productsByCategory}
           title={categoryTitle}
         />
