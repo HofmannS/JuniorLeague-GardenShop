@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import DiscountFormImage from "../../assets/DiscountForm.png"
 import "./DiscountForm.scss"
 import { useForm } from 'react-hook-form'
-import { XOctagon } from 'lucide-react'
+import octagon from "../../assets/Images/icons/x-octagon.png"
 
 const DiscountForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -63,7 +63,7 @@ const DiscountForm = () => {
                                 />
                                 {errors.name && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.name.message}
                                     </p>
                                 )}
@@ -76,7 +76,7 @@ const DiscountForm = () => {
                                 />
                                 {errors.phone && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.phone.message}
                                     </p>
                                 )}
@@ -89,7 +89,7 @@ const DiscountForm = () => {
                                 />
                                 {errors.email && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.email.message}
                                     </p>
                                 )}
@@ -98,7 +98,8 @@ const DiscountForm = () => {
                                 )}
                             </div>
                             <div className='form__button'>
-                                <button type='submit'>Get a discount</button>
+                                <button type='submit' className={`button ${isSubmitted ? 'submitting' : ''}`}
+                                disabled={isSubmitted}>{isSubmitted ? 'Request Submitted' : 'Get a discount'}</button>
                             </div>
                         </form>
                     </div>
