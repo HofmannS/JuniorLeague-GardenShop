@@ -1,3 +1,6 @@
+@use "../../styles/mixin" as mixin;
+
+
 .banner__wrapper {
     background: var(--color-bg);
     padding-bottom: 80px;
@@ -5,49 +8,68 @@
 
 .banner {
     width: 100%;
-    height: 600px;
-    overflow: hidden;
-    background-image: url('../../assets/Banner.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
+    margin: 0 auto;
+    position: relative;
 
-    &__image {
-        display: none;
-
-        &-item {
-            display: none;
-        }
-    }
-
-    &__content {
+    .banner__image {
         width: 100%;
-        height: auto;
-        padding-top: 80px;
-        padding-bottom: 210px;
-        display: flex;
-        align-items: center;
+        // display: block;
+        object-fit: cover;
     }
 
-    &__title {
-        width: 80%;
-        height: 212px;
-        font-size: 96px;
-        color: white;
-        font-weight: 700;
-        font-family: var(--font-main);
-    }
+    .banner__bg {
+        width: 100%;
+        height: 100%;
+        background-color: #00000010;
+        position: absolute;
+        top: 0;
 
-    &__button {
-        margin-top: 40px;
-        padding: 16px 56px;
-        background-color: var(--color-green);
-        color: white;
-        border: none;
-        border-radius: var(--radius-small);
-        font-size: 20px;
-        font-weight: 600;
-        font-family: var(--font-main);
+        .container {
+            position: relative;
+
+            .banner__content {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                max-width: 1100px;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+
+                .banner__title {
+                    font-size: 96px;
+                    color: var(--color-txt-white);
+                    font-weight: 700;
+                    line-height: 110%;
+
+                    @include mixin.respond(1000) {
+                        font-size: 90px
+                    }
+
+                    @include mixin.respond(768) {
+                        font-size: 68px
+                    }
+
+                    @include mixin.respond(480) {
+                        font-size: 60px
+                    }
+                    @include mixin.respond(360) {
+                        font-size: 52px
+                    };
+                }
+
+                .banner__btn {
+                    align-self: flex-start;
+                    padding: 16px 56px;
+                    border-radius: var(--radius-small);
+                    background-color: var(--color-green);
+                    color: var(--color-txt-white);
+                    font-size: 20px;
+                    font-weight: 600;
+
+                }
+            }
+
+        }
     }
 }

@@ -6,7 +6,7 @@ import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import { useState } from 'react';
 
-const CategoryPanel = ({ item__limit }) => {
+const CategoryPanel = ({ item__limit, forceReload }) => {
   const dispatch = useDispatch();
 
   const { categories, loading, error } = useSelector((state) => state.categories);
@@ -14,10 +14,10 @@ const CategoryPanel = ({ item__limit }) => {
   const [randomCategories, setRandomCategories] = useState([])
 
   useEffect(() => {
-    if (categories.length === 0) {
+    if (forceReload || categories.length === 0) {
       dispatch(fetchCategories());
     }
-  }, [dispatch, categories.length]);
+  }, [dispatch, categories.length, forceReload]);
 
   useEffect(() => {
     if (categories.length > 0) {

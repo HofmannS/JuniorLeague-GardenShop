@@ -1,36 +1,38 @@
 .header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 30px 0px;
-  box-sizing: border-box;
-  position: relative;
   background-color: var(--color-bg);
 
-  &__logo {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__logo img {
     max-height: 68px;
     width: auto;
   }
 
-  &__icons {
+   &__icons {
     display: flex;
     gap: 28px;
-    right: 0px;
-    position: absolute;
 
     &-favorite,
     &-cart {
-      color: var(--color-txt-black);
       background: none;
       border: none;
+      color: var(--color-txt-black);
       cursor: pointer;
-      transition: color 0.3s ease;
-    }
 
-    &-favorite:hover,
-    &-cart:hover {
-      color: var(--color-green);
+      &:hover {
+        color: var(--color-green);
+      }
     }
   }
 

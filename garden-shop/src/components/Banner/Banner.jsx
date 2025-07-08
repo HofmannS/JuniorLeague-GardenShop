@@ -6,18 +6,20 @@ const Banner = () => {
     return (
         <div className="banner__wrapper">
             <div className="banner">
-                <div className='banner__image'>
-                    <img src={BannerImage} alt="Banner"
-                        className='banner__image-item' />
-                </div>
-                <div className='banner__content'>
-                    <div className="container">
-                    <h1 className='banner__title'>Amazing Discounts on Garden Products!</h1>
-                    <button className='banner__button'>Check out</button>
+                <img src={BannerImage} alt="Banner" className='banner__image' />
+
+                <div className='banner__bg'>
+                   <div className="container">
+                   <div className='banner__content container' >
+                        <h1 className='banner__title'>Amazing Discounts on Garden Products!</h1>
+                        <button className='banner__btn'>Check out</button>
                     </div>
+                   </div>
                 </div>
+
             </div>
         </div>
     );
 };
-export default Banner 
+export default Banner
+
