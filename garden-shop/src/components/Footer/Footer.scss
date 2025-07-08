@@ -1,4 +1,4 @@
-@import '../../styles/_mixin.scss';
+@use '../../styles/_mixin.scss' as mixin;
 
 .footer {
   background: var(--color-bg);
@@ -19,7 +19,7 @@
     align-items: stretch;
     
 
-    @include respond(768) {
+    @include mixin.respond(768) {
       grid-template-columns: 1fr;
     }
   }
@@ -50,7 +50,7 @@
 
   &__info {
     font-weight: 600;
-    @include clamp(font-size, 28px, 3vw, 40px);
+    @include mixin.clamp(font-size, 28px, 3vw, 40px);
     line-height: 110%;
     color: var(--color-txt-black);
 

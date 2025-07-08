@@ -6,7 +6,7 @@ const AllProductsPage = () => {
   return (
     <div>
       <Breadcrumbs />
-      <ProductPanel />
+      <ProductPanel title='All products' forceReload={true} />
     </div>
   )
 }

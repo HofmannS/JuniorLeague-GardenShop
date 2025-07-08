@@ -1,4 +1,4 @@
-@import "../../styles/_mixin.scss";
+@use "../../styles/mixin" as mixin;
 
 
 .banner__wrapper {
@@ -42,18 +42,18 @@
                     font-weight: 700;
                     line-height: 110%;
 
-                    @include respond(1000) {
+                    @include mixin.respond(1000) {
                         font-size: 90px
                     }
 
-                    @include respond(768) {
+                    @include mixin.respond(768) {
                         font-size: 68px
                     }
 
-                    @include respond(480) {
+                    @include mixin.respond(480) {
                         font-size: 60px
                     }
-                    @include respond(360) {
+                    @include mixin.respond(360) {
                         font-size: 52px
                     };
                 }

@@ -7,7 +7,6 @@ import logoIcon from "../../assets/Images/logo.svg";
 import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
-
     return (
         <header className="header">
             <div className="container header__inner">
@@ -32,7 +31,6 @@ const Header = () => {
             </div>
         </header>
     );
-
 };
 
 export default Header;
