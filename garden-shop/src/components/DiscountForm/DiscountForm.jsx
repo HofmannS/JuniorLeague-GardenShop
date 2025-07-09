@@ -13,6 +13,16 @@ const DiscountForm = () => {
 
     const onSubmit = (data) => {
         console.log("Submitted data:", data)
+
+        const discountRequests = JSON.parse(localStorage.getItem('discountRequests') || '[]')
+        const updatedDiscounts = [...discountRequests,
+            {
+                ...data,
+                submittedAt: new Date().toISOString(),
+                discount: '5%'
+            }]
+        localStorage.setItem('discountRequests', JSON.stringify(updatedDiscounts))
+
         setIsSubmitted(true)
         reset()
 
