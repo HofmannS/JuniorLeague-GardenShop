@@ -10,7 +10,9 @@ import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 const ProductsByCategoryPanel = ({ 
     item__limit, 
     customProducts = null, 
-    title = 'All products'  
+    title = 'All products',
+    from = null,
+    categoryId = null
 }) => {
     const dispatch = useDispatch();
 
@@ -84,7 +86,8 @@ const ProductsByCategoryPanel = ({
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
-
+                    from={from}
+                    categoryId={categoryId}
                 />
             )}
         >

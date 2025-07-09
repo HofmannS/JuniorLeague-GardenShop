@@ -8,7 +8,17 @@ import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduc
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 
-const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavorites = false, hideDiscountFilter = false, title, forceReload = false }) => {
+const ProductsPanel = ({ 
+    item__limit, 
+    showOnlyDiscounted = false, 
+    showOnlyFavorites = false, 
+    hideDiscountFilter = false, 
+    title, 
+    forceReload = false,
+    from = null,
+    categoryId = null
+
+}) => {
 
     const dispatch = useDispatch();
 
@@ -84,6 +94,8 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
+                    from={from}
+                    categoryId={categoryId}
 
                 />
             )}
