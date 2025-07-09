@@ -13,7 +13,7 @@
 
     .banner__image {
         width: 100%;
-        // display: block;
+        max-width: 1440px;
         object-fit: cover;
     }
 
@@ -38,7 +38,7 @@
 
                 .banner__title {
                     font-size: 96px;
-                    color: var(--color-txt-white);
+                    color: #ffffff;
                     font-weight: 700;
                     line-height: 110%;
 
@@ -61,9 +61,10 @@
                 .banner__btn {
                     align-self: flex-start;
                     padding: 16px 56px;
+                    border: none;
                     border-radius: var(--radius-small);
                     background-color: var(--color-green);
-                    color: var(--color-txt-white);
+                    color: #ffffff;
                     font-size: 20px;
                     font-weight: 600;
 
