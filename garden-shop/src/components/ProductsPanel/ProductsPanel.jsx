@@ -8,7 +8,7 @@ import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduc
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 
-const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavorites = false, hideDiscountFilter = false, title, forceReload = false}) => {
+const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavorites = false, hideDiscountFilter = false, title, forceReload = false }) => {
 
     const dispatch = useDispatch();
 
@@ -21,9 +21,9 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
 
     useEffect(() => {
         if (forceReload || products.length === 0) {
-          dispatch(fetchProducts());
+            dispatch(fetchProducts());
         }
-      }, [dispatch, products.length, forceReload]);
+    }, [dispatch, products.length, forceReload]);
 
     const getFilteredAndSortedProducts = () => {
         let filtered = [...products]
@@ -34,11 +34,11 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
         }
 
         if (priceFrom) {
-            filtered = filtered.filter(item => item.price >= Number(priceFrom))
+            filtered = filtered.filter(item => (item.discont_price ?? item.price) >= Number(priceFrom));
         }
 
         if (priceTo) {
-            filtered = filtered.filter(item => item.price <= Number(priceTo))
+            filtered = filtered.filter(item => (item.discont_price ?? item.price) <= Number(priceTo));
         }
 
         if (onlyDiscounted) {
@@ -87,18 +87,18 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
 
                 />
             )}
-        >            
-                <FilterSortBar
-                    priceFrom={priceFrom}
-                    setPriceFrom={setPriceFrom}
-                    priceTo={priceTo}
-                    setPriceTo={setPriceTo}
-                    onlyDiscounted={onlyDiscounted}
-                    setOnlyDiscounted={setOnlyDiscounted}
-                    sortMethod={sortMethod}
-                    setSortMethod={setSortMethod}
-                    hideDiscountFilter={hideDiscountFilter}
-                />            
+        >
+            <FilterSortBar
+                priceFrom={priceFrom}
+                setPriceFrom={setPriceFrom}
+                priceTo={priceTo}
+                setPriceTo={setPriceTo}
+                onlyDiscounted={onlyDiscounted}
+                setOnlyDiscounted={setOnlyDiscounted}
+                sortMethod={sortMethod}
+                setSortMethod={setSortMethod}
+                hideDiscountFilter={hideDiscountFilter}
+            />
         </Panel>
     )
 }

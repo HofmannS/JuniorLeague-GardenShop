@@ -17,8 +17,8 @@ const FilterSortBar = ({
     const sortOptions = [
         { value: 'default', label: 'by default' },
         { value: 'newest', label: 'newest' },
-        { value: 'price-asc', label: 'price: high-low' },
-        { value: 'price-desc', label: 'price: low-high' },
+        { value: 'price-desc', label: 'price: high-low' },
+        { value: 'price-asc', label: 'price: low-high' },
     ]
 
     return (
