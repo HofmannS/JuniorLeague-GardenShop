@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SlHandbag, SlHeart } from "react-icons/sl";
 import "./ProductCard.scss";
 
-const ProductCard = ({ id, image, title, price, discont_price }) => {
+const ProductCard = ({ id, image, title, price, discont_price, onFavoriteToggle }) => { //добавила последний пропс
 const [isFavorite, setIsFavorite] = useState(false);
 const [isInCart, setIsInCart] = useState(false);
 
@@ -36,6 +36,8 @@ const [isInCart, setIsInCart] = useState(false);
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     setIsFavorite(!isFavorite);
+
+    if (onFavoriteToggle) onFavoriteToggle(); //добавила строку 
   };
 
   const toggleCart = (e) => {
