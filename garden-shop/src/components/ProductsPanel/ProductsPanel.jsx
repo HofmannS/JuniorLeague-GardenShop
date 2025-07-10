@@ -8,7 +8,17 @@ import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduc
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 
-const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavorites = false, hideDiscountFilter = false, title, forceReload = false}) => {
+const ProductsPanel = ({ 
+    item__limit, 
+    showOnlyDiscounted = false, 
+    showOnlyFavorites = false, 
+    hideDiscountFilter = false, 
+    title, 
+    forceReload = false,
+    from = null,
+    categoryId = null
+
+}) => {
 
     const dispatch = useDispatch();
 
@@ -18,12 +28,13 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
     const [priceTo, setPriceTo] = useState('')
     const [onlyDiscounted, setOnlyDiscounted] = useState(showOnlyDiscounted)
     const [sortMethod, setSortMethod] = useState('default')
+    const [, setFavoritesVersion] = useState (0) //добавила строку
 
     useEffect(() => {
         if (forceReload || products.length === 0) {
-          dispatch(fetchProducts());
+            dispatch(fetchProducts());
         }
-      }, [dispatch, products.length, forceReload]);
+    }, [dispatch, products.length, forceReload]);
 
     const getFilteredAndSortedProducts = () => {
         let filtered = [...products]
@@ -34,11 +45,11 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
         }
 
         if (priceFrom) {
-            filtered = filtered.filter(item => item.price >= Number(priceFrom))
+            filtered = filtered.filter(item => (item.discont_price ?? item.price) >= Number(priceFrom));
         }
 
         if (priceTo) {
-            filtered = filtered.filter(item => item.price <= Number(priceTo))
+            filtered = filtered.filter(item => (item.discont_price ?? item.price) <= Number(priceTo));
         }
 
         if (onlyDiscounted) {
@@ -64,7 +75,6 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
 
     const filteredAndSortedProducts = getFilteredAndSortedProducts()
 
-
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -84,21 +94,23 @@ const ProductsPanel = ({ item__limit, showOnlyDiscounted = false, showOnlyFavori
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
-
+                    onFavoriteToggle={() => setFavoritesVersion ((prev) => prev + 1)} // добавила строку
+                    from={from}
+                    categoryId={categoryId}
                 />
             )}
-        >            
-                <FilterSortBar
-                    priceFrom={priceFrom}
-                    setPriceFrom={setPriceFrom}
-                    priceTo={priceTo}
-                    setPriceTo={setPriceTo}
-                    onlyDiscounted={onlyDiscounted}
-                    setOnlyDiscounted={setOnlyDiscounted}
-                    sortMethod={sortMethod}
-                    setSortMethod={setSortMethod}
-                    hideDiscountFilter={hideDiscountFilter}
-                />            
+        >
+            <FilterSortBar
+                priceFrom={priceFrom}
+                setPriceFrom={setPriceFrom}
+                priceTo={priceTo}
+                setPriceTo={setPriceTo}
+                onlyDiscounted={onlyDiscounted}
+                setOnlyDiscounted={setOnlyDiscounted}
+                sortMethod={sortMethod}
+                setSortMethod={setSortMethod}
+                hideDiscountFilter={hideDiscountFilter}
+            />
         </Panel>
     )
 }

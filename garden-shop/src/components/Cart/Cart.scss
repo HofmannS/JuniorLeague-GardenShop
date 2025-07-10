@@ -1,0 +1,18 @@
+.cart-empty {
+    &__text{
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--color-txt-black);
+        padding-bottom: 32px;
+    }
+    &__btn {
+        align-self: flex-start;
+        padding: 16px 56px;
+        border-radius: var(--radius-small);
+        border: none;
+        background-color: var(--color-green);
+        color: var(--color-txt-white);
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
