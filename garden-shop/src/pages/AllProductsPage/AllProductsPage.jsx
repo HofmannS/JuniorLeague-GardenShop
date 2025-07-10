@@ -1,10 +1,12 @@
 import React from 'react'
-import ProductPanel from '@components/ProductsPanel/ProductsPanel'
+import ProductsPanel from '@components/ProductsPanel/ProductsPanel'
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs'
 
 const AllProductsPage = () => {
   return (
     <div>
-      <ProductPanel title='All products' forceReload={true} />
+      <Breadcrumbs />
+      <ProductsPanel title='All products' forceReload={true} />
     </div>
   )
 }

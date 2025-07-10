@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { SlHandbag, SlHeart } from "react-icons/sl";
 import "./ProductCard.scss";
 
-const ProductCard = ({ id, image, title, price, discont_price, onFavoriteToggle }) => { //добавила последний пропс
+
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId, onFavoriteToggle }) => { //добавила последний пропс
 const [isFavorite, setIsFavorite] = useState(false);
 const [isInCart, setIsInCart] = useState(false);
 
@@ -60,7 +61,14 @@ const [isInCart, setIsInCart] = useState(false);
 
   return (
     <div className="product__item">
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`}
+      state={{
+        from,
+        categoryId,
+        productID: id,
+        productTitle: title
+      }}
+      >
         <div className="product__item__image">
           <img
             src={`${import.meta.env.VITE_APP_API_URL}${image}`}
