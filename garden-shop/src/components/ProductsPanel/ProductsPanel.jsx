@@ -28,6 +28,7 @@ const ProductsPanel = ({
     const [priceTo, setPriceTo] = useState('')
     const [onlyDiscounted, setOnlyDiscounted] = useState(showOnlyDiscounted)
     const [sortMethod, setSortMethod] = useState('default')
+    const [, setFavoritesVersion] = useState (0) //добавила строку
 
     useEffect(() => {
         if (forceReload || products.length === 0) {
@@ -74,7 +75,6 @@ const ProductsPanel = ({
 
     const filteredAndSortedProducts = getFilteredAndSortedProducts()
 
-
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -94,9 +94,9 @@ const ProductsPanel = ({
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
+                    onFavoriteToggle={() => setFavoritesVersion ((prev) => prev + 1)} // добавила строку
                     from={from}
                     categoryId={categoryId}
-
                 />
             )}
         >
