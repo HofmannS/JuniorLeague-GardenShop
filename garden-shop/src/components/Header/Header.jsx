@@ -5,6 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import "./Header.scss";
 import logoIcon from "../../assets/Images/logo.svg";
 import { Link, NavLink } from "react-router-dom";
+import BurgerMenu from "../BurgerMenu/BurgerMenu.jsx";
 
 const Header = () => {
     return (
@@ -28,6 +29,7 @@ const Header = () => {
                         </NavLink>
                     </div>
                 </div>
+                <BurgerMenu />
             </div>
         </header>
     );
