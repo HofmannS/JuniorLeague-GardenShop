@@ -17,6 +17,7 @@ const Cart = () => {
     setCartItems(updatedCart)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
+  
   const increaseQuantity = (id) => {
     const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -24,6 +25,7 @@ const Cart = () => {
     setCartItems(updatedCart)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
+
 
   const decreaseQuantity = (id) => {
     const updatedCart = cartItems.map(item =>

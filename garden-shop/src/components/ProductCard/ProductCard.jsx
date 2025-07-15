@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 
-const ProductCard = ({ id, image, title, price, discont_price, from, categoryId }) => {
+
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId, onFavoriteToggle }) => { //добавила последний пропс
 const [isFavorite, setIsFavorite] = useState(false);
 const [isInCart, setIsInCart] = useState(false);
 
@@ -35,6 +36,8 @@ const [isInCart, setIsInCart] = useState(false);
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     setIsFavorite(!isFavorite);
+
+    if (onFavoriteToggle) onFavoriteToggle(); //добавила строку 
   };
 
   const toggleCart = (e) => {
@@ -49,6 +52,7 @@ const [isInCart, setIsInCart] = useState(false);
     if (existingItem) {
       updatedCart = cart.filter((item) => item.id !== id);
     } else {
+
       const productData = { id, image, title, price, discont_price, quantity: 1 };
       updatedCart = [...cart, productData];
     }
