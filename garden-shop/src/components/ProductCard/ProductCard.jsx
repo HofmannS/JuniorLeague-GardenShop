@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { SlHandbag, SlHeart } from "react-icons/sl";
 import "./ProductCard.scss";
 
 
@@ -18,7 +17,7 @@ const [isInCart, setIsInCart] = useState(false);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     setIsFavorite(favorites.includes(id));
-    setIsInCart(cart.includes(id));
+    setIsInCart(cart.some((item) => item.id === id));
   }, [id]);
   
 
@@ -36,6 +35,7 @@ const [isInCart, setIsInCart] = useState(false);
     }
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    window.dispatchEvent(new Event('favoritesUpdated'));
     setIsFavorite(!isFavorite);
 
     if (onFavoriteToggle) onFavoriteToggle(); //добавила строку 
@@ -44,18 +44,23 @@ const [isInCart, setIsInCart] = useState(false);
   const toggleCart = (e) => {
     e.stopPropagation();
     e.preventDefault();
-
+  
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    const existingItem = cart.find((item) => item.id === id);
     let updatedCart;
-
-    if (cart.includes(id)) {
-      updatedCart = cart.filter((cartId) => cartId !== id);
+  
+    if (existingItem) {
+      updatedCart = cart.filter((item) => item.id !== id);
     } else {
-      updatedCart = [...cart, id];
-    }
 
+      const productData = { id, image, title, price, discont_price, quantity: 1 };
+      updatedCart = [...cart, productData];
+    }
+  
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setIsInCart(!isInCart);
+    window.dispatchEvent(new Event('cartUpdated'));
+    setIsInCart(!existingItem);
   };
 
 
