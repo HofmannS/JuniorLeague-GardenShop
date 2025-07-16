@@ -35,6 +35,7 @@ const [isInCart, setIsInCart] = useState(false);
     }
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    window.dispatchEvent(new Event('favoritesUpdated'));
     setIsFavorite(!isFavorite);
 
     if (onFavoriteToggle) onFavoriteToggle(); //добавила строку 
@@ -58,6 +59,7 @@ const [isInCart, setIsInCart] = useState(false);
     }
   
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event('cartUpdated'));
     setIsInCart(!existingItem);
   };
 
