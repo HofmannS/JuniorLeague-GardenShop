@@ -86,13 +86,11 @@
 
 @media (max-width: 480px) {
     .not-found__title {
-        font-size: 48px;
-        color: royalblue;
+        font-size: 48px;        
     }
 
     .not-found__description p {
-        font-size: 18px;
-        color: royalblue;
+        font-size: 18px;    
     }
 
     .not-found__button {
@@ -111,14 +109,12 @@
 
 @media (max-width: 360px) {
     .not-found__title {
-        font-size: 40px;
-        color: red;
+        font-size: 40px;        
     }
 
     .not-found__description p {
         font-size: 18px;
-        font-weight: 500;
-        color: red;
+        font-weight: 500;        
     }
 
     .not-found__image--four {
