@@ -1,13 +1,13 @@
 import React from 'react'
 import './SkeletonCategory.scss'
 
-function SkeletonCategory({category__limit}) {
+function SkeletonCategory({categoryLimit = 4}) {
   return (
-    <div className="skeleton__category__list">
-  {Array.from({ length: category__limit }).map((_, index) => (
+<>
+  {Array.from({ length: categoryLimit }).map((_, index) => (
     <div key={index} className="skeleton__category__item"></div>
   ))}
-</div>
+</>
   )
 }
 

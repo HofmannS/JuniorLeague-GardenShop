@@ -8,7 +8,7 @@ import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduc
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 const ProductsByCategoryPanel = ({ 
-    item__limit, 
+    item_limit, 
     customProducts = null, 
     title = 'All products',
     from = null,
@@ -74,9 +74,9 @@ const ProductsByCategoryPanel = ({
         <Panel
             title={title}
             items={filteredAndSortedProducts}
-            item_limit={item__limit}
+            item_limit={item_limit}
             isLoading={!customProducts && loading}
-            skeleton={<SkeletonProduct products__limit={item__limit} />}
+            skeleton={(item_limit) => <SkeletonProduct productsLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard
                     key={item.id}

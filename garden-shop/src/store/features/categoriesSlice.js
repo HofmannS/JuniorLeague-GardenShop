@@ -10,6 +10,7 @@ export const fetchCategories = createAsyncThunk(
     "categories/fetchCategories",
     async () => {
         try {
+            // await new Promise(resolve => setTimeout(resolve, 6000));
             const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/categories/all`);
              
             if (!response.ok) {

@@ -6,7 +6,7 @@ import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import { useState } from 'react';
 
-const CategoryPanel = ({ item__limit, forceReload }) => {
+const CategoryPanel = ({ item_limit, forceReload }) => {
   const dispatch = useDispatch();
 
   const { categories, loading, error } = useSelector((state) => state.categories);
@@ -22,10 +22,10 @@ const CategoryPanel = ({ item__limit, forceReload }) => {
   useEffect(() => {
     if (categories.length > 0) {
       const shuffled = [...categories].sort(() => 0.5 - Math.random())
-      const selected = shuffled.slice(0, item__limit)
+      const selected = shuffled.slice(0, item_limit)
       setRandomCategories(selected)
     }
-  }, [categories, item__limit])
+  }, [categories, item_limit])
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -35,11 +35,11 @@ const CategoryPanel = ({ item__limit, forceReload }) => {
     <Panel
       title="Categories"
       items={randomCategories}
-      item_limit={item__limit}
+      item_limit={item_limit}
       buttonText="All categories"
       link="/categories"
       isLoading={loading}
-      skeleton={<SkeletonCategory category__limit={item__limit} />}
+      skeleton={(item_limit) => <SkeletonCategory categoryLimit={item_limit}/>}
       renderItem={(item) => (
         <CategoryCard
           key={item.id}

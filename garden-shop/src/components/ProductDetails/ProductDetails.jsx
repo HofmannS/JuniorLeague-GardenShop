@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import "./ProductDetails.scss";
 
 const ProductDetails = ({ product, loading, error }) => {

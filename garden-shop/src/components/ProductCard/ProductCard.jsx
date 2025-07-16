@@ -38,7 +38,7 @@ const [isInCart, setIsInCart] = useState(false);
     window.dispatchEvent(new Event('favoritesUpdated'));
     setIsFavorite(!isFavorite);
 
-    if (onFavoriteToggle) onFavoriteToggle(); //добавила строку 
+    if (onFavoriteToggle) onFavoriteToggle();
   };
 
   const toggleCart = (e) => {

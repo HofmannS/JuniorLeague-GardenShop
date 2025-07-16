@@ -5,6 +5,7 @@ import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import './CategoriesPage.scss'
 import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs';
+import SkeletonСategory from '@components/Skeleton/SkeletonCategory/SkeletonCategory';
 
 
 const CategoriesPage = () => {
@@ -31,6 +32,7 @@ const CategoriesPage = () => {
         link="/categories"
         items={categories}
         isLoading={loading}
+        keleton={(item_limit) => <SkeletonСategory productLimit={item_limit} />}
         renderItem={(item) => (
           <CategoryCard
             key={item.id}
