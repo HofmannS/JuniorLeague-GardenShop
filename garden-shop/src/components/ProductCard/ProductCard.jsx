@@ -52,7 +52,8 @@ const [isInCart, setIsInCart] = useState(false);
     if (existingItem) {
       updatedCart = cart.filter((item) => item.id !== id);
     } else {
-      const productData = { id, image, title, price, discont_price };
+
+      const productData = { id, image, title, price, discont_price, quantity: 1 };
       updatedCart = [...cart, productData];
     }
   

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import LineButton from '@components/LineButton/LineButton'
 import CartProduct from '@components/Cart/CartProduct/CartProduct'
 import './Cart.scss'
+import CartForm from '@components/Cart/CartForm/CartForm'
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([])
@@ -16,7 +17,25 @@ const Cart = () => {
     setCartItems(updatedCart)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
+  
+  const increaseQuantity = (id) => {
+    const updatedCart = cartItems.map(item =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    )
+    setCartItems(updatedCart)
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+  }
 
+
+  const decreaseQuantity = (id) => {
+    const updatedCart = cartItems.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+        : item
+    )
+    setCartItems(updatedCart)
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+  }
   return (
     <div className="container">
       <div className="cart-panel">
@@ -24,16 +43,21 @@ const Cart = () => {
           <h2 className="cart-panel__header__title">Shopping cart</h2>
           {<LineButton name={"Back to the store"} link={"/products"} />}
         </div>
-       {cartItems.length !== 0 && (<div className="cart-panel__full">
-       <div className="cart-panel__full__list">
-          {cartItems && cartItems.map(
-            (item) => (<CartProduct
-              key={item.id}
-              {...item}
-              onRemove={removeItem} />))}
-        </div>
-        <div className="cart-panel__full__form">// Тут будет форма</div>
-       </div>)}
+        {cartItems.length !== 0 && (<div className="cart-panel__full">
+          <div className="cart-panel__full__list">
+            {cartItems && cartItems.map(
+              (item) => (<CartProduct
+                key={item.id}
+                {...item}
+                onRemove={removeItem}
+                onIncrease={increaseQuantity}
+                onDecrease={decreaseQuantity}
+              />))}
+          </div>
+          <div className="cart-panel__full__form">
+            <CartForm cartItems={cartItems} />
+          </div>
+        </div>)}
         {cartItems.length === 0 && (
           <div className="cart-panel__empty">
             <p className="cart-panel__empty__text">
