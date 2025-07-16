@@ -7,6 +7,7 @@ const initialState = {
   categoryTitle: '',
   loading: false,
   error: null,
+  product: null,
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -51,6 +52,26 @@ export const fetchProductsByCategory = createAsyncThunk(
   }
 );
 
+export const fetchProductById = createAsyncThunk(
+  "product/fetchById",
+  async (productId) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_API_URL}/products/${productId}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Product not Found !!!");
+      }
+
+      const data = await response.json();
+      return Array.isArray(data) ? data[0] : data;
+      
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 const productsSlice = createSlice({
   name: "products",
@@ -79,6 +100,19 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.product = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
       });
   },
 });
