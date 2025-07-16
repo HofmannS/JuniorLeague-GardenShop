@@ -15,9 +15,9 @@ const NotFoundPage = () => {
     <div className="container">
       <div className="not-found__container">
         <div className="not-found__pictures">
-          <img className="not-found__image--four" src={FourImage} alt="four" />
-          <img className="not-found__image--cactus" src={CactusImage} alt="cactus" />
-          <img className="not-found__image--four" src={FourImage} alt="four" />
+          <img className="not-found__image" src={FourImage} alt="four" />
+          <img className="not-found__image" src={CactusImage} alt="cactus" />
+          <img className="not-found__image" src={FourImage} alt="four" />
         </div>
         <div className="not-found__text">
           <p className="not-found__title">Page Not Found</p>
