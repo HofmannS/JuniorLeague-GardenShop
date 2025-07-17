@@ -8,9 +8,9 @@ const HomePage = () => {
   return (
     <div>
         <Banner />
-        <CategoryPanel item__limit={4} forceReload={false}/>
+        <CategoryPanel item_limit={4} forceReload={false}/>
         <DiscountForm />
-        <SalesPanel item__limit={4}/>
+        <SalesPanel item_limit={4} forceReload={false}/>
     </div>
   )
 }

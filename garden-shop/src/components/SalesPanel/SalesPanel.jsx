@@ -7,7 +7,7 @@ import ProductCard from '@components/ProductCard/ProductCard';
 import { useMemo } from 'react';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';
 
-const SalesPanel = ({ item__limit }) => {
+const SalesPanel = ({ item_limit }) => {
     const dispatch = useDispatch();
 
     const { products, loading, error } = useSelector((state) => state.products);
@@ -30,10 +30,10 @@ const SalesPanel = ({ item__limit }) => {
     useEffect(() => {
         if (discontedProducts.length > 0) {
             const shuffled = [...discontedProducts].sort(() => 0.5 - Math.random())
-            const selected = shuffled.slice(0, item__limit)
+            const selected = shuffled.slice(0, item_limit)
             setRandomDiscontedProducts(selected)
         }
-    }, [discontedProducts, item__limit])
+    }, [discontedProducts, item_limit])
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -42,11 +42,11 @@ const SalesPanel = ({ item__limit }) => {
         <Panel
             title="Sale"
             items={randomDiscontedProducts}
-            item_limit={item__limit}
+            item_limit={item_limit}
             buttonText="All sales"
             link="/discount"
             isLoading={loading}
-            skeleton={<SkeletonProduct products__limit={item__limit} />}
+            skeleton={(item_limit) => <SkeletonProduct productLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard
                     key={item.id}

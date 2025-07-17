@@ -14,7 +14,7 @@ const Panel = ({ title, items, item_limit, renderItem, buttonText, link,  isLoad
       </div>
       {children}
       <div className="panel__list">
-        {isLoading ? skeleton :
+        {isLoading ? skeleton(item_limit) :
         visibleItems.map(renderItem)}
       </div>
     </div>

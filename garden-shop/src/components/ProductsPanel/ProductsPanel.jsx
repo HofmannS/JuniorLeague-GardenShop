@@ -9,7 +9,7 @@ import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 
 const ProductsPanel = ({ 
-    item__limit, 
+    item_limit, 
     showOnlyDiscounted = false, 
     showOnlyFavorites = false, 
     hideDiscountFilter = false, 
@@ -82,9 +82,9 @@ const ProductsPanel = ({
         <Panel
             title={title}
             items={filteredAndSortedProducts}
-            item_limit={item__limit}
+            item_limit={item_limit}
             isLoading={loading}
-            skeleton={<SkeletonProduct products__limit={item__limit} />}
+            skeleton={(item_limit) => <SkeletonProduct productLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard
                     key={item.id}
@@ -94,7 +94,7 @@ const ProductsPanel = ({
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
-                    onFavoriteToggle={() => setFavoritesVersion ((prev) => prev + 1)} // добавила строку
+                    onFavoriteToggle={() => setFavoritesVersion ((prev) => prev + 1)} 
                     from={from}
                     categoryId={categoryId}
                 />
