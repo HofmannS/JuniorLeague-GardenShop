@@ -19,6 +19,32 @@ const ProductDetailsPage = () => {
     }
   }, [dispatch, productId]);
 
+  const handleAddToCart = (quantity) => {
+    if (!product || !product.image) return
+
+
+    const newItem = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      discont_price: product.discont_price,
+      image: product.image,
+      quantity,
+    }
+
+
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+    const foundIndex = currentCart.findIndex(item => item.id === newItem.id)
+
+    if (foundIndex !== -1) {
+      currentCart[foundIndex].quantity += quantity
+    } else {
+      currentCart.push(newItem)
+    }
+    localStorage.setItem('cart', JSON.stringify(currentCart))
+
+    window.dispatchEvent(new Event('cartUpdated'))
+  }
 
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка: {error}</p>;
@@ -30,6 +56,7 @@ const ProductDetailsPage = () => {
         product={product}
         loading={loading}
         error={error}
+        onAddToCart={handleAddToCart}
       />
     </div>
   )

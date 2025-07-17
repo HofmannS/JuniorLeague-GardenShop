@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./ProductDetails.scss";
 
-const ProductDetails = ({ product, loading, error }) => {
+const ProductDetails = ({ product, loading, error, onAddToCart }) => {
 
     const [quantity, setQuantity] = useState(1);
     const [favorite, setFavorite] = useState(false);
@@ -34,6 +34,8 @@ const ProductDetails = ({ product, loading, error }) => {
         setQuantity((prev) => Math.max(prev + change, 1))
     };
 
+
+
     const toggleFavorite = () => {
         if (!product?.id) return;
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -45,72 +47,59 @@ const ProductDetails = ({ product, loading, error }) => {
         }
         localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
         setFavorite(!favorite)
+        window.dispatchEvent(new Event('favoritesUpdated'))
     }
 
-    const handleAddToCart = () => {
-        if (!product?.id) return;
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        for (let i = 0; i < quantity; i++) {
-            cart.push(product.id)
-        }
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }
 
     return (
-        <div className='product__details container'>
-            <div className="product__details__image" onClick={() => setIsModalOpen(true)}>
+        <div className='product-details container'>
+            <div className="product-details__image" onClick={() => setIsModalOpen(true)}>
                 <img
                     src={imageUrl}
                     alt={product.title}
                 />
             </div>
 
-            <div className='product__details__info'>
-                <div className='product__details__header'>
-                    <h1 className='title'>{product.title}</h1>
+            <div className='product-details__info'>
+                <div className='product-details__header'>
+                    <h1 className='product-details__title'>{product.title}</h1>
                     <button
-                        className={`favorite-btn ${favorite ? "active" : ""}`}
+                        className={`product-details__favorite ${favorite ? "active" : ""}`}
                         onClick={toggleFavorite}
                     ></button>
                 </div>
 
-                <div className='product__details__price'>
-                    <div className='price__wrapper'>
+                <div className='product-details__price'>
+                    <div className='product-details__price-wrapper'>
                         {product.discont_price ? (
                             <>
-                                <p className='price__new'>${product.discont_price}</p>
-                                <p className='price__old'>${product.price}</p>
+                                <p className='product-details__price-new'>${product.discont_price}</p>
+                                <p className='product-details__price-old'>${product.price}</p>
                             </>
                         ) : (
-                            <p className='price__new'>${product.price}</p>
+                            <p className='product-details__price-new'>${product.price}</p>
                         )}
                         {discontPercent &&
-                            <div className="product__item__discount">-{discontPercent}%</div>
+                            <div className="product-details__discount">-{discontPercent}%</div>
                         }
                     </div>
                 </div>
 
-                <div className='product__details__purchase'>
-                    <div className='quantity__control'>
-                        <button className='quantity__button' onClick={() => handleQuantityChange(-1)} >-</button>
-                        <input type="number" min='1' value={quantity}
-                            onChange={(inputEvent) => {
-                                let value = parseInt(inputEvent.target.value);
-                                setQuantity(isNaN(value) || value < 1 ? 1 : value);
-                            }}
-                            className='quantity__input'
-                        />
-                        <button className='quantity__button' onClick={() => handleQuantityChange(1)} >+</button>
+                <div className='product-details__purchase'>
+                    <div className='product-details__quantity'>
+                        <button className='product-details__button' onClick={() => handleQuantityChange(-1)} ></button>
+                        <p className='product-details__value'>{quantity}</p>
+                        <button className='product-details__button' onClick={() => handleQuantityChange(1)} ></button>
                     </div>
 
-                    <button className='cart__button' onClick={handleAddToCart}>Add to cart</button>
+                    <button className='product-details__button-cart' onClick={() => onAddToCart(quantity)}>Add to cart</button>
                 </div>
 
-                <div className='product__details__description'>
+                <div className='product-details__description'>
                     <h2>Description</h2>
                     {isDescriptionOpen || !isLongDescription ? product.description : shortDescription + '...'}
                     {isLongDescription && (
-                        <button className='read__more__button' onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
+                        <button className='product-details__read-more' onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
                             {isDescriptionOpen ? 'Show less' : 'Read more'}
                         </button>
                     )}
@@ -118,8 +107,8 @@ const ProductDetails = ({ product, loading, error }) => {
             </div>
 
             {isModalOpen && (
-                <div className='modal' onClick={() => setIsModalOpen(false)}>
-                    <img src={imageUrl} alt={product.title} className='modal__image' onClick={(e) => e.stopPropagation()} />
+                <div className='product-details__modal' onClick={() => setIsModalOpen(false)}>
+                    <img src={imageUrl} alt={product.title} className='product-details__modal-image' onClick={(e) => e.stopPropagation()} />
                 </div>
             )}
         </div>
