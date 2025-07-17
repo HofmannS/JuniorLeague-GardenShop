@@ -91,10 +91,12 @@ const CartForm = ({ cartItems }) => {
         {isSubmitted && (
           <div className="modal">
             <div className="modal__content">
+              <div className="modal__text">
+                <h2>Congratulations!</h2>
+                <p>Your order has been successfully placed on the website.</p>
+                <p>A manager will contact you shortly to confirm your order.</p>
+              </div>
               <button className="modal__close" onClick={() => setIsSubmitted(false)}>&times;</button>
-              <h2>Congratulations!</h2>
-              <p>Your order has been successfully placed on the website.<br />
-                A manager will contact you shortly to confirm your order.</p>
             </div>
           </div>
         )}

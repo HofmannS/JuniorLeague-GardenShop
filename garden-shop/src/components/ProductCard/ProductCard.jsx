@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 
 
-const ProductCard = ({ id, image, title, price, discont_price, from, categoryId, onFavoriteToggle }) => { //добавила последний пропс
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId, onFavoriteToggle }) => {
 const [isFavorite, setIsFavorite] = useState(false);
 const [isInCart, setIsInCart] = useState(false);
 

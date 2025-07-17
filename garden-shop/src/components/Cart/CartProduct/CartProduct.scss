@@ -63,7 +63,7 @@
             position: absolute;
             width: 12px;
             height: 2px;
-            background-color: var(--color-txt-black);
+            background-color: #424436;
         }
 
         &::before {
@@ -86,7 +86,7 @@
     &__quantity {
         display: flex;
         align-items: center;
-        color: var(--color-txt-black);
+        color: #424436;
         border: 1px solid var(--color-line);
         border-radius: var(--radius-small);
         overflow: hidden;
@@ -137,7 +137,7 @@
     &__quantity-value {
         font-size: 20px;
         padding: 0 44px;
-        color: var(--color-txt-black);
+        color: #424436;
     }
 
     &__price {
@@ -150,7 +150,7 @@
         font-weight: 600;
         font-size: 40px;
         line-height: 110%;
-        color: var(--color-txt-black);
+        color: #424436;
     }
 
     &__price-old {
