@@ -1,53 +1,55 @@
 import React, { useEffect, useState } from 'react'
-import "./ProductDetails.scss";
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '@/store/features/cartSlice'
+import { toggleFavorite } from '@/store/features/favoriteSlice'
+import './ProductDetails.scss'
 
-const ProductDetails = ({ product, loading, error, onAddToCart }) => {
-
-    const [quantity, setQuantity] = useState(1);
-    const [favorite, setFavorite] = useState(false);
-    const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+const ProductDetails = ({ product, loading, error }) => {
+    const [quantity, setQuantity] = useState(1)
+    const [isDescriptionOpen, setIsDescriptionOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-
+  
+    const dispatch = useDispatch()
+    const favorites = useSelector(state => state.favorites)
+    const isFavorite = favorites.includes(product?.id)
+  
     useEffect(() => {
-        if (product && product.id) {
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            setFavorite(favorites.includes(product.id))
+        // Синхронизация избранного и корзины составяем, т.к. нужно отслеживать обновления из localStorage
+        window.addEventListener('favoritesUpdated', () => {})
+        window.addEventListener('cartUpdated', () => {})
+        return () => {
+          window.removeEventListener('favoritesUpdated', () => {})
+        //   window.removeEventListener('cartUpdated', () => {})
         }
-    }, [product])
-
-    if (loading) return <p>Загрузка...</p>;
-    if (error) return <p>Ошибка: {error}</p>;
-    if (!product) return null;
-
-    const imageUrl = `${import.meta.env.VITE_APP_API_URL}${product.image}`
-
-    const discontPercent =
+      }, [])
+    
+      if (loading) return <p>Загрузка...</p>
+      if (error) return <p>Ошибка: {error}</p>
+      if (!product) return null
+    
+      const imageUrl = `${import.meta.env.VITE_APP_API_URL}${product.image}`
+      const discontPercent =
         product.discont_price && product.price
-            ? Math.round(((product.price - product.discont_price) / product.price) * 100)
-            : null;
-
-    const shortDescription = product.description?.slice(0, 150) || '';
-    const isLongDescription = product.description && product.description.length > 150;
-
-    const handleQuantityChange = (change) => {
+          ? Math.round(((product.price - product.discont_price) / product.price) * 100)
+          : null
+    
+      const shortDescription = product.description?.slice(0, 150) || ''
+      const isLongDescription = product.description && product.description.length > 150
+    
+      const handleQuantityChange = (change) => {
         setQuantity((prev) => Math.max(prev + change, 1))
-    };
-
-
-
-    const toggleFavorite = () => {
-        if (!product?.id) return;
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let updatedFavorites;
-        if (favorite) {
-            updatedFavorites = favorites.filter(id => id !== product.id)
-        } else {
-            updatedFavorites = [...favorites, product.id]
-        }
-        localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
-        setFavorite(!favorite)
+      }
+    
+      const handleAddToCart = () => {
+        dispatch(addToCart({ ...product, quantity }))
+        window.dispatchEvent(new Event('cartUpdated'))
+      }
+    
+      const handleToggleFavorite = () => {
+        dispatch(toggleFavorite(product.id))
         window.dispatchEvent(new Event('favoritesUpdated'))
-    }
+      }
+    
 
 
     return (
@@ -63,8 +65,8 @@ const ProductDetails = ({ product, loading, error, onAddToCart }) => {
                 <div className='product-details__header'>
                     <h1 className='product-details__title'>{product.title}</h1>
                     <button
-                        className={`product-details__favorite ${favorite ? "active" : ""}`}
-                        onClick={toggleFavorite}
+                        className={`product-details__favorite ${isFavorite ? "active" : ""}`}
+                        onClick={handleToggleFavorite}
                     ></button>
                 </div>
 
@@ -91,7 +93,7 @@ const ProductDetails = ({ product, loading, error, onAddToCart }) => {
                         <button className='product-details__button' onClick={() => handleQuantityChange(1)} ></button>
                     </div>
 
-                    <button className='product-details__button-cart' onClick={() => onAddToCart(quantity)}>Add to cart</button>
+                    <button className='product-details__button-cart' onClick={handleAddToCart}>Add to cart</button>
                 </div>
 
                 <div className='product-details__description'>

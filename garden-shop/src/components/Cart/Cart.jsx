@@ -1,41 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import LineButton from '@components/LineButton/LineButton'
 import CartProduct from '@components/Cart/CartProduct/CartProduct'
+import { removeFromCart, increaseQuantity, decreaseQuantity } from '@/store/features/cartSlice'
 import './Cart.scss'
 import CartForm from '@components/Cart/CartForm/CartForm'
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([])
+  const cartItems = useSelector(state => state.cart)
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || []
-    setCartItems(cart)
-  }, [])
-
-  const removeItem = (id) => {
-    const updatedCart = cartItems.filter(item => item.id !== id)
-    setCartItems(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
-  }
-  
-  const increaseQuantity = (id) => {
-    const updatedCart = cartItems.map(item =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    )
-    setCartItems(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id))
+    window.dispatchEvent(new Event("cartUpdated"));
   }
 
-
-  const decreaseQuantity = (id) => {
-    const updatedCart = cartItems.map(item =>
-      item.id === id
-        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
-        : item
-    )
-    setCartItems(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
-  }
   return (
     <div className="container">
       <div className="cart-panel">
@@ -47,11 +25,10 @@ const Cart = () => {
           <div className="cart-panel__full__list">
             {cartItems && cartItems.map(
               (item) => (<CartProduct
-                key={item.id}
                 {...item}
-                onRemove={removeItem}
-                onIncrease={increaseQuantity}
-                onDecrease={decreaseQuantity}
+                onRemove={handleRemoveFromCart}
+                onIncrease={() => dispatch(increaseQuantity(item.id))}
+                onDecrease={() => dispatch(decreaseQuantity(item.id))}
               />))}
           </div>
           <div className="cart-panel__full__form">
