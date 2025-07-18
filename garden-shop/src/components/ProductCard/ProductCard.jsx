@@ -6,14 +6,15 @@ import { toggleFavorite } from "@/store/features/favoriteSlice";
 import "./ProductCard.scss";
 
 
+
 const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}) => {
   const dispatch = useDispatch();
 
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
 
-const [isFavorite, setIsFavorite] = useState(false);
-const [isInCart, setIsInCart] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
 
   let discont_percent = null;
   if (discont_price !== null) {
