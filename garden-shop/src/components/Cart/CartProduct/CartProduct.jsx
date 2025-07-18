@@ -2,6 +2,9 @@ import React from 'react'
 import './CartProduct.scss'
 
 const CartProduct = ({ id, image, title, price, discont_price, quantity, onRemove, onIncrease, onDecrease }) => {
+  const formatPrice = (value) => {
+    return Number.isInteger(value) ? value : value.toFixed(2);
+  };
   return (
     <div className='cart-product'>
       <div className='cart-product__image'>
@@ -26,11 +29,11 @@ const CartProduct = ({ id, image, title, price, discont_price, quantity, onRemov
           <div className='cart-product__price'>
             {discont_price ? (
               <>
-                <p className='cart-product__price-new'>${discont_price * quantity}</p>
-                <p className='cart-product__price-old'>${price * quantity}</p>
+                <p className='cart-product__price-new'>${formatPrice(discont_price * quantity)}</p>
+                <p className='cart-product__price-old'>${formatPrice(price * quantity)}</p>
               </>
             ) : (
-              <p className='cart-product__price-new'>${price * quantity}</p>
+              <p className='cart-product__price-new'>${formatPrice(price * quantity)}</p>
             )}
           </div>
         </div>
