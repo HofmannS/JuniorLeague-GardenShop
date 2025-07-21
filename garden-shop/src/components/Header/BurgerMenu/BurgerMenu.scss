@@ -4,7 +4,7 @@
     cursor: pointer;
     color: var(--color-txt-black);
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       display: block;
       margin-left: 20px;
     }
@@ -33,6 +33,7 @@
     background-color: var(--color-bg);
     display: flex;
     flex-direction: column;
+    
     transition: right 0.3s ease;
 
     &.open {
@@ -57,11 +58,15 @@
         font-size: 24px;
         font-weight: 500;
         line-height: 130%;
-      }
 
-      &-discount {
-        margin-top: 36px;
-        max-width: 211px;
+        @media (max-width: 360px) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  &__discount {
         padding: 6px 16px;
         border-radius: var(--radius-small);
         font-size: 24px;
@@ -71,12 +76,14 @@
         background-color: var(--color-green);
         border: none;
         cursor: pointer;
-      }
-    }
-  }
+        margin-top: 36px;
 
-  @media (min-width: 480px) {
-      display: none;
-      
-    }
+        @media (max-width: 360px) {
+          font-size: 18px;
+          
+        }
+      }
+  @media (min-width: 768px) {
+    display: none;
+  }
 }

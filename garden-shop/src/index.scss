@@ -9,6 +9,7 @@
   --color-cards: #F2F6D3;
   --color-line: #DDDDDD;
   --sale-card: #ffffff;
+  --light-grey: #F2F6D3;
 
   // Шрифт
   --font-main: Montserrat, sans-serif;
@@ -49,3 +50,18 @@
   }
 }
 
+@mixin card_adaptive{
+  display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      
+    }
+}
