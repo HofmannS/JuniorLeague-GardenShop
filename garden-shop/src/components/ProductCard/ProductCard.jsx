@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "@store/features/cartSlice";
+import { toggleFavorite } from "@store/features/favoriteSlice";
 import "./ProductCard.scss";
 
 
-const ProductCard = ({ id, image, title, price, discont_price, from, categoryId, onFavoriteToggle }) => {
-const [isFavorite, setIsFavorite] = useState(false);
-const [isInCart, setIsInCart] = useState(false);
+
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}) => {
+  const dispatch = useDispatch();
+
+  const favorites = useSelector((state) => state.favorites);
+  const cart = useSelector((state) => state.cart);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
 
   let discont_percent = null;
   if (discont_price !== null) {
@@ -13,56 +22,29 @@ const [isInCart, setIsInCart] = useState(false);
   }
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
     setIsFavorite(favorites.includes(id));
     setIsInCart(cart.some((item) => item.id === id));
-  }, [id]);
+  }, [favorites, cart, id]);
   
 
-  const toggleFavorite = (e) => {
+  const handleToggleFavorite = (e) => {
+    e.stopPropagation();
+    e.preventDefault();    
+    dispatch(toggleFavorite(id));
+    window.dispatchEvent(new Event("favoritesUpdated"));
+  };
+
+  const handleToggleCart = (e) => {
     e.stopPropagation();
     e.preventDefault();
 
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    let updatedFavorites;
-
-    if (favorites.includes(id)) {
-      updatedFavorites = favorites.filter((favId) => favId !== id);
+    if (isInCart) {
+      dispatch(removeFromCart(id));
     } else {
-      updatedFavorites = [...favorites, id];
+      dispatch(addToCart({ id, image, title, price, discont_price, quantity: 1 }));
     }
-
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    window.dispatchEvent(new Event('favoritesUpdated'));
-    setIsFavorite(!isFavorite);
-
-    if (onFavoriteToggle) onFavoriteToggle();
+    window.dispatchEvent(new Event("cartUpdated"));
   };
-
-  const toggleCart = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  
-    const existingItem = cart.find((item) => item.id === id);
-    let updatedCart;
-  
-    if (existingItem) {
-      updatedCart = cart.filter((item) => item.id !== id);
-    } else {
-
-      const productData = { id, image, title, price, discont_price, quantity: 1 };
-      updatedCart = [...cart, productData];
-    }
-  
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event('cartUpdated'));
-    setIsInCart(!existingItem);
-  };
-
 
   return (
     <div className="product__item">
@@ -104,11 +86,11 @@ const [isInCart, setIsInCart] = useState(false);
       <div className="icons">
         <button
           className={`icons__button favorite ${isFavorite ? "active" : ""}`}
-          onClick={toggleFavorite}
+          onClick={handleToggleFavorite}
         ></button>
         <button
           className={`icons__button cart ${isInCart ? "active" : ""}`}
-          onClick={toggleCart}
+          onClick={handleToggleCart}
         ></button>
       </div>
     </div>
