@@ -17,12 +17,12 @@ const Header = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-    const updateCounts = () => {
-        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        setFavoritesCount(favorites.length);
-        setCartCount(cart.length);
-    };
+  const updateCounts = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setFavoritesCount(favorites.length);
+    setCartCount(cart.length);
+  };
 
   useEffect(() => {
     updateCounts();
