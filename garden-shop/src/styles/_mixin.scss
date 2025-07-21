@@ -52,3 +52,17 @@
   // $min — минимальное значение (например, 14px)
   // $preferred — адаптивное значение (например, 2vw)
   // $max — максимальное значение (например, 22px)
+
+  @mixin card-adaptive($gap: 20px, $min-width: 210px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(#{$min-width}, 1fr));
+  gap: $gap;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import "./BurgerMenu.scss";
 import { Sling as Hamburger } from "hamburger-react";
 
+
+
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
@@ -13,21 +15,22 @@ const BurgerMenu = () => {
         <Hamburger
           toggled={isOpen}
           toggle={setIsOpen}
-          size={30}
+          size={35}
           direction="right"
         />
       </div>
-      {isOpen && <div className="burger__backdrop" onClick={closeMenu}/>}
+      {isOpen && (<div className="burger__backdrop" onClick={closeMenu}/>)}
+
       <div className={`burger__overlay ${isOpen ? "open" : ""}`}>
         <div className="burger__overlay-close">
           <Hamburger
-          
             toggled={isOpen}
             toggle={setIsOpen}
             size={30}
             direction="right"
           />
         </div>
+
         <ul className="burger__overlay-nav">
           <li>
             <NavLink to="/" onClick={closeMenu}>
@@ -49,8 +52,8 @@ const BurgerMenu = () => {
               All sales
             </NavLink>
           </li>
-          <button className="burger__overlay-nav-discount">1 day discount!</button>
         </ul>
+        <button className="burger__discount">1 day discount!</button>
       </div>
     </div>
   );

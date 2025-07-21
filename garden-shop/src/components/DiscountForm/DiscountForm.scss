@@ -90,7 +90,7 @@
       }
 
       &.submitting {
-        background: #f2f6d3;
+        background: var(--light-grey);
         color: #92a134;
       }
     }
