@@ -23,24 +23,25 @@ const ProductsPanel = ({
     const dispatch = useDispatch();
 
     const { products, loading, error } = useSelector((state) => state.products);
-
+    const favorites = useSelector((state) => state.favorites); 
+    
     const [priceFrom, setPriceFrom] = useState('')
     const [priceTo, setPriceTo] = useState('')
     const [onlyDiscounted, setOnlyDiscounted] = useState(showOnlyDiscounted)
     const [sortMethod, setSortMethod] = useState('default')
-    const [, setFavoritesVersion] = useState (0) //добавила строку
+   
 
     useEffect(() => {
         if (forceReload || products.length === 0) {
             dispatch(fetchProducts());
         }
-    }, [dispatch, products.length, forceReload]);
+    }, [dispatch, products.length, forceReload]); 
+
 
     const getFilteredAndSortedProducts = () => {
         let filtered = [...products]
 
-        if (showOnlyFavorites) {
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        if (showOnlyFavorites) {            
             filtered = filtered.filter(item => favorites.includes(item.id))
         }
 
@@ -94,7 +95,6 @@ const ProductsPanel = ({
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
-                    onFavoriteToggle={() => setFavoritesVersion ((prev) => prev + 1)} 
                     from={from}
                     categoryId={categoryId}
                 />
