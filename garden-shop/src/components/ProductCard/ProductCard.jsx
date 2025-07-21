@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "@/store/features/cartSlice";
-import { toggleFavorite } from "@/store/features/favoriteSlice";
+import { addToCart, removeFromCart } from "@store/features/cartSlice";
+import { toggleFavorite } from "@store/features/favoriteSlice";
 import "./ProductCard.scss";
 
 
@@ -29,8 +29,7 @@ const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}
 
   const handleToggleFavorite = (e) => {
     e.stopPropagation();
-    e.preventDefault();
-
+    e.preventDefault();    
     dispatch(toggleFavorite(id));
     window.dispatchEvent(new Event("favoritesUpdated"));
   };

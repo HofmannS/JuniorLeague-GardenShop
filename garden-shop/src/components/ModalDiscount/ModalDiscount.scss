@@ -1,11 +1,9 @@
 .modal {
-    width: 548px;  
-    height: 664px;  
+    width: 548px;
+    height: 664px;
     padding: 32px;
     background-color: var(--color-green);
     border-radius: var(--radius-big);
-    // max-height: calc(100vh - 200px); // появляется скрол
-    // overflow-y: auto;    
 }
 
 .modal__title {
@@ -18,11 +16,11 @@
 .modal__title-description {
     font-size: 40px;
     font-weight: 600;
-    color: var(--color-txt-white);   
+    color: var(--color-txt-white);
 }
 
 .modal__close-button {
-    position: relative;    
+    position: relative;
 }
 
 .modal__close-button img {
@@ -38,9 +36,21 @@
     height: 422px;
     margin-bottom: 16px;
 }
+
 .modal__content-image {
     text-align: center;
-    border-bottom: 1px solid var(--color-line); 
+    border-bottom: 1px solid var(--color-line);
+    width: 100%;
+    height: 284px;   
+}
+
+.modal__content-image img {
+    width: 100%;
+    height: 100%;    
+    object-fit: contain;
+    display: block;
+    border-top-left-radius: var(--radius-big);
+    border-top-right-radius: var(--radius-big);
 }
 
 .modal__content-discont {
@@ -54,63 +64,74 @@
     padding: 4px 8px;
     border-radius: var(--radius-small);
 }
+
 .modal__content-favorite {
     position: absolute;
     top: 16px;
     right: 16px;
 }
+
 .modal__content-info {
-    width: 316px;
-    margin-top: 20px;    
-    padding: 0 32px 32px 32px;        
+    //width: 316px;
+    margin-top: 20px;
+    padding: 0 32px 32px 32px;
 }
-.modal__content-name {
+
+.modal__content-name p {
     font-size: 20px;
     font-weight: 500;
     color: var(--color-txt-black);
-    margin-bottom: 16px; 
+    margin-bottom: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 252px;
 }
+
 .modal__content-price {
-    display: flex;    
-    align-items: baseline;      
+    display: flex;
+    align-items: baseline;
 }
+
 .modal__content-price-new {
-    width: 91px;
     height: 44px;
     font-size: 40px;
     font-weight: 600;
     margin-right: 16px;
 }
+
 .modal__content-price-old {
-    text-decoration: line-through;     
+    text-decoration: line-through;
     font-size: 20px;
     font-weight: 500;
     color: var(--color-txt-muted);
 }
-.modal__button{
-width: 484px;
 
+.modal__button {
+    width: 484px;
 }
-.modal__button button{
-width: 100%; 
-padding: 16px 32px;
-font-size: 20px;
-font-weight: 600;
-background-color: var(--color-bg);
-color: var(--color-txt-black);
-border-radius: var(--radius-small);
-border: none;
+
+.modal__button button {
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: var(--color-bg);
+    color: var(--color-txt-black);
+    border-radius: var(--radius-small);
+    border: none;
 }
 
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;  
-  padding-top: 60px; // по макету тут должно быть 180px
-  z-index: 1000;  
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    padding-top: 60px; // по макету тут должно быть 180px
+    z-index: 1000;
 }
