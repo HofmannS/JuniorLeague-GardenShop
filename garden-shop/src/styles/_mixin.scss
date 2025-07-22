@@ -55,7 +55,7 @@
 
   @mixin card-adaptive($gap: 20px, $min-width: 210px) {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(#{$min-width}, 1fr));
+  grid-template-columns: repeat(4, minmax(#{$min-width}, 1fr));
   gap: $gap;
 
   @media (max-width: 1000px) {
