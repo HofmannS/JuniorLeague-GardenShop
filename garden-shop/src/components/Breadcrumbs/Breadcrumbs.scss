@@ -1,3 +1,5 @@
+@use '@styles/mixin' as *;
+
 .breadcrumbs {
     display: flex;
     align-items: center;
@@ -35,5 +37,9 @@
     &__current {
         color: var(--color-txt-black);
         cursor: default;
+    }
+
+    @include respond(480) {
+        display: none;
     }
 }
