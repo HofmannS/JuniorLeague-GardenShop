@@ -26,7 +26,7 @@
     color: var(--color-txt-black);
     font-family: var(--font-main);
     font-weight: 500;
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     cursor: pointer;
     transition: color 0.3s ease;
   }
@@ -39,7 +39,7 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
       &__nav-list,
       &__discount-button {
         display: none;
