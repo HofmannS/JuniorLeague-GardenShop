@@ -32,7 +32,7 @@ const CategoriesPage = () => {
         link="/categories"
         items={categories}
         isLoading={loading}
-        keleton={(item_limit) => <SkeletonСategory productLimit={item_limit} />}
+        skeleton={(item_limit) => <SkeletonСategory categoryLimit={item_limit} />}
         renderItem={(item) => (
           <CategoryCard
             key={item.id}

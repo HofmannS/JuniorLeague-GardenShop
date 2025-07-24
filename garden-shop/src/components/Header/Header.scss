@@ -18,49 +18,4 @@
     max-height: clamp(44px, 10vw, 70px);
     width: auto;
   }
-
-  &__icons {
-    display: flex;
-    gap: 28px;
-    
-
-    &-wrapper {
-      position: relative;
-      background: none;
-      border: none;
-      color: var(--color-txt-black);
-      cursor: pointer;
-
-      &:hover {
-        color: var(--color-green);
-      }
-      
-    }
-    
-    &-image {
-      width: clamp(32px, 8vw, 48px);
-      height: clamp(32px, 10vw, 48px);
-      object-fit: contain;
-      
-      
-    }
-
-
-    &-badge {
-      position: absolute;
-      top: clamp(3px, 4vw, 5px); 
-      right: clamp(19px, 4vw, 25px); 
-      background-color: var(--color-green);
-      color: white;
-      font-size: clamp(8px, 2vw, 12px);
-      font-weight: 600;
-      width: clamp(17px, 4vw, 26px);
-      height: clamp(17px, 4vw, 26px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-    }
-  }
 }
