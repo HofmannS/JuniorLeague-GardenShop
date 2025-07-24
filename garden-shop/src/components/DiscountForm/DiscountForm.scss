@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 32px 32px 0 32px;
+  padding: 32px 32px 0 32px;  
   margin-bottom: 110px;
 
   h2 {
     text-align: center;
-    font-size: 64px;
+    font-size: clamp(48px, 4.5vw, 64px);
     color: white;
     font-weight: 700;
   }
@@ -42,11 +42,11 @@
     }
 
     input {
-      padding: 16px 32px;
+      padding: 16px 32px;      
       border: 1px solid white;
       border-radius: var(--radius-small);
       background: transparent;
-      font-size: 20px;
+      font-size: clamp(18px, 2.5vw, 20px);
       font-weight: 400;
       color: white;
 
@@ -57,7 +57,7 @@
 
     .error__message {
       color: white;
-      font-size: 16px;
+      font-size: clamp(14px, 2vw, 16px);
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -67,18 +67,18 @@
 
     .success__message {
       color: white;
-      font-size: 16px;
+      font-size: clamp(14px, 2vw, 16px);
       font-weight: 500;
     }
 
     button {
       width: 100%;
-      margin-top: 16px;
-      padding: 16px 32px;
+      margin-top: 16px;            
+      padding: clamp(12px, 3vw, 16px) clamp(20px, 6vw, 32px);
       border: none;
       background: #fffff1;
       border-radius: var(--radius-small);
-      font-size: 20px;
+      font-size: clamp(18px, 2.5vw, 20px);
       font-weight: 600;
       color: #424436;
       cursor: pointer;
