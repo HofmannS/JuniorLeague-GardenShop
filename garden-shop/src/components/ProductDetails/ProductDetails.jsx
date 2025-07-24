@@ -51,17 +51,8 @@ const ProductDetails = ({ product, loading, error }) => {
       }
     
 
-
     return (
         <div className='product-details container'>
-            <div className="product-details__image" onClick={() => setIsModalOpen(true)}>
-                <img
-                    src={imageUrl}
-                    alt={product.title}
-                />
-            </div>
-
-            <div className='product-details__info'>
                 <div className='product-details__header'>
                     <h1 className='product-details__title'>{product.title}</h1>
                     <button
@@ -70,6 +61,19 @@ const ProductDetails = ({ product, loading, error }) => {
                     ></button>
                 </div>
 
+            <div className="product-details__image" onClick={() => setIsModalOpen(true)}>
+                <img
+                    src={imageUrl}
+                    alt={product.title}
+                />
+                  {discontPercent && (
+      <div className="product-details__discount product-details__discount--mobile">
+        -{discontPercent}%
+      </div>
+    )}
+            </div>
+           
+            <div className='product-details__info'>
                 <div className='product-details__price'>
                     <div className='product-details__price-wrapper'>
                         {product.discont_price ? (
@@ -96,7 +100,9 @@ const ProductDetails = ({ product, loading, error }) => {
                     <button className='product-details__button-cart' onClick={handleAddToCart}>Add to cart</button>
                 </div>
 
-                <div className='product-details__description'>
+               
+            </div>
+            <div className='product-details__description'>
                     <h2>Description</h2>
                     {isDescriptionOpen || !isLongDescription ? product.description : shortDescription + '...'}
                     {isLongDescription && (
@@ -105,8 +111,6 @@ const ProductDetails = ({ product, loading, error }) => {
                         </button>
                     )}
                 </div>
-            </div>
-
             {isModalOpen && (
                 <div className='product-details__modal' onClick={() => setIsModalOpen(false)}>
                     <img src={imageUrl} alt={product.title} className='product-details__modal-image' onClick={(e) => e.stopPropagation()} />
