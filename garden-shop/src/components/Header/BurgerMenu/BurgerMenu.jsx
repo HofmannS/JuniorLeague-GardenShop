@@ -26,7 +26,7 @@ const BurgerMenu = () => {
           <Hamburger
             toggled={isOpen}
             toggle={setIsOpen}
-            size={30}
+            size={35}
             direction="right"
           />
         </div>
