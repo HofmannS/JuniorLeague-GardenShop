@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from "@store/features/productSlice";
-import { toggleFavorite } from "@store/features/favoriteSlice"
+import { toggleFavorite } from "@store/features/favoriteSlice";
+import { addToCart } from "@store/features/cartSlice";
 
 import IcxImage from "../../assets/Images/ic x.png"
-import HeartEmpty from "../../assets/Images/Heart empty.png"
-import HeartLiked from "../../assets/Images/Heart liked.png"
+import HeartEmpty from "../../assets/Images/icons/basket=like.png"
+import HeartLiked from "../../assets/Images/icons/basket=liked.png"
 import "./ModalDiscount.scss"
 
 const ModalDiscount = ({ onClose }) => {
@@ -65,15 +66,24 @@ const ModalDiscount = ({ onClose }) => {
     }
 
     const { title, image, price } = randomProduct;
-   
-    const isFavorite = favorites.includes(randomProduct.id);
+
+    const handleAddToCart = () => {
+        const discountedProduct = {
+            ...randomProduct,
+            discont_price: Number(discountedPrice),
+            price: randomProduct.price
+        }
+
+        dispatch(addToCart({ ...discountedProduct, quantity: 1 }));
+        window.dispatchEvent(new Event("cartUpdated"));
+        onClose();
+    }
+    const isFavorite = favorites.includes(randomProduct.id);   
 
     const handleToggleFavorite = () => {
-    dispatch(toggleFavorite(randomProduct.id));
-};
-
-
- 
+        dispatch(toggleFavorite(randomProduct.id));
+        window.dispatchEvent(new Event("favoritesUpdated"));
+    };
 
     const discountedPrice = (price * 0.5).toFixed(2);
 
@@ -108,7 +118,7 @@ const ModalDiscount = ({ onClose }) => {
                 </div>
             </div>
             <div className='modal__button'>
-                <button>Add to cart</button>
+                <button onClick={handleAddToCart}>Add to cart</button>
             </div>
         </div>
     )
