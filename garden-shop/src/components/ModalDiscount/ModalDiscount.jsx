@@ -5,7 +5,7 @@ import { toggleFavorite } from "@store/features/favoriteSlice";
 import { addToCart } from "@store/features/cartSlice";
 
 import IcxImage from "../../assets/Images/ic x.png"
-import HeartEmpty from "../../assets/Images/icons/basket=heartempty.png"
+import HeartEmpty from "../../assets/Images/icons/basket=like.png"
 import HeartLiked from "../../assets/Images/icons/basket=liked.png"
 import "./ModalDiscount.scss"
 
