@@ -1,23 +1,62 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import './CartForm.scss'
 import octagon from '../../../assets/images/icons/x-octagon.png'
 
 const CartForm = ({ cartItems }) => {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const savedUser = JSON.parse(localStorage.getItem('lastDiscountUser'))
 
-  const totalItems = cartItems.length;
-  const totalPrice = cartItems.reduce((sum, cartItem) => {
-    const price = cartItem.discont_price || cartItem.price
-    return sum + price * cartItem.quantity
-  }, 0)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+    watch
+  } = useForm({ mode: 'onSubmit' })
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
-    mode: 'onSubmit'
-  })
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem('lastDiscountUser'))
+    if (savedUser) {
+      setValue('name', savedUser.name)
+      setValue('phone', savedUser.phone)
+      setValue('email', savedUser.email)
+    }
+  }, [setValue])
+
+  const name = watch('name') || ''
+  const phone = watch('phone') || ''
+  const email = watch('email') || ''
+
+  const hasDiscount = useMemo(() => {
+    if (!savedUser) return false
+    return (
+      savedUser.name?.trim() === name.trim() &&
+      savedUser.phone?.trim() === phone.trim() &&
+      savedUser.email?.trim() === email.trim()
+    )
+  }, [name, phone, email, savedUser])
+
+  const totalItems = cartItems.length
+
+  const rawTotalPrice = useMemo(() => {
+    return cartItems.reduce((sum, cartItem) => {
+      const price = cartItem.discont_price || cartItem.price
+      return sum + price * cartItem.quantity
+    }, 0)
+  }, [cartItems])
+
+  const totalPrice = hasDiscount ? rawTotalPrice * 0.95 : rawTotalPrice
 
   const onSubmit = (data) => {
-    console.log('Order placed:', { ...data, cartItems, totalItems, totalPrice })
+    console.log('Order placed:', {
+      ...data,
+      cartItems,
+      totalItems,
+      totalPrice,
+      discountApplied: hasDiscount
+    })
 
     setIsSubmitted(true)
     reset()
@@ -50,12 +89,12 @@ const CartForm = ({ cartItems }) => {
       <h3 className="order-form__title">Order Details</h3>
 
       <div className="order-form__summary">
-        <p className="order-form__summary-item">
-          {totalItems} items
-        </p>
+        <p className="order-form__summary-item">{totalItems} items</p>
         <p className="order-form__summary-item">
           Total
-          <p className="order-form__summary-price">${totalPrice.toFixed(2)}</p>
+          <p className="order-form__summary-price">
+            ${totalPrice.toFixed(2)}
+          </p>
         </p>
       </div>
 
@@ -101,7 +140,11 @@ const CartForm = ({ cartItems }) => {
           </div>
         )}
 
-        <button type="submit" className={`order-form__btn ${isSubmitted ? 'submitting' : ''}`} disabled={isSubmitted}>
+        <button
+          type="submit"
+          className={`order-form__btn ${isSubmitted ? 'submitting' : ''}`}
+          disabled={isSubmitted}
+        >
           {isSubmitted ? 'Order Placed' : 'Order'}
         </button>
       </form>

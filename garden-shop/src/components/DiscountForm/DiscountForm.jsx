@@ -22,6 +22,7 @@ const DiscountForm = () => {
                 discount: '5%'
             }]
         localStorage.setItem('discountRequests', JSON.stringify(updatedDiscounts))
+        localStorage.setItem('lastDiscountUser', JSON.stringify(data))
 
         setIsSubmitted(true)
         reset()
