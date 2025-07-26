@@ -31,7 +31,7 @@ const Header = () => {
           </div>
         )}
         <HeaderIcons />
-        <BurgerMenu />
+        <BurgerMenu onDiscountClick={openModal}/>
       </div>
     </header>
   );

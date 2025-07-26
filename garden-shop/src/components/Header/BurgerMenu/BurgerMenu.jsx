@@ -5,9 +5,15 @@ import { Sling as Hamburger } from "hamburger-react";
 
 
 
-const BurgerMenu = () => {
+const BurgerMenu = ({onDiscountClick}) => {  // добавила пропс
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
+
+  const handleDiscountClick = () => {
+    onDiscountClick(); 
+    closeMenu();         
+  };
+
 
   return (
     <div className="burger">
@@ -53,7 +59,7 @@ const BurgerMenu = () => {
             </NavLink>
           </li>
         </ul>
-        <button className="burger__discount">1 day discount!</button>
+        <button className="burger__discount" onClick={handleDiscountClick}>1 day discount!</button>
       </div>
     </div>
   );
