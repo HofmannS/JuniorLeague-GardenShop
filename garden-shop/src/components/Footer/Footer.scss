@@ -7,7 +7,7 @@
   h2 {
     color: var(--color-txt-black);
     font-weight: 700;
-    font-size: 64px;
+    font-size: clamp(40px, 5vw, 64px);
     line-height: 110%;
     margin-bottom: 40px;
   }
