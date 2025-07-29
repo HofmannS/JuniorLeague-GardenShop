@@ -14,7 +14,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
     try {
-      // await new Promise(resolve => setTimeout(resolve, 6000));
+    
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_URL}/products/all`
       );
@@ -36,7 +36,7 @@ export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchProductsByCategory",
   async (categoryId) => {
     try {
-      // await new Promise(resolve => setTimeout(resolve, 6000));
+      
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_URL}/categories/${categoryId}`
       );
@@ -58,7 +58,7 @@ export const fetchProductById = createAsyncThunk(
   "product/fetchById",
   async (productId) => {
     try {
-      // await new Promise(resolve => setTimeout(resolve, 6000));
+      
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_URL}/products/${productId}`
       );
