@@ -26,6 +26,7 @@ const Cart = () => {
           <div className="cart-panel__full-list">
             {cartItems && cartItems.map(
               (item) => (<CartProduct
+                key={item.id}
                 {...item}
                 onRemove={handleRemoveFromCart}
                 onIncrease={() => dispatch(increaseQuantity(item.id))}
