@@ -2,10 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import './CartForm.scss'
 import octagon from '../../../assets/images/icons/x-octagon.png'
+import { useDispatch } from 'react-redux'
+import { clearCart } from '@/store/features/cartSlice'
 
 const CartForm = ({ cartItems }) => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const savedUser = JSON.parse(localStorage.getItem('lastDiscountUser'))
+
+  const dispatch = useDispatch()
 
   const {
     register,
@@ -90,12 +94,12 @@ const CartForm = ({ cartItems }) => {
 
       <div className="order-form__summary">
         <p className="order-form__summary-item">{totalItems} items</p>
-        <p className="order-form__summary-item">
+        <div className="order-form__summary-item">
           Total
           <p className="order-form__summary-price">
             ${totalPrice.toFixed(2)}
           </p>
-        </p>
+        </div>
       </div>
 
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -135,7 +139,12 @@ const CartForm = ({ cartItems }) => {
                 <p>Your order has been successfully placed on the website.</p>
                 <p>A manager will contact you shortly to confirm your order.</p>
               </div>
-              <button className="modal__close" onClick={() => setIsSubmitted(false)}>&times;</button>
+              <button className="modal__close"
+               onClick={() => {
+                setIsSubmitted(false)
+                dispatch(clearCart())
+                window.dispatchEvent(new Event("cartUpdated"))
+              }}>&times;</button>
             </div>
           </div>
         )}
