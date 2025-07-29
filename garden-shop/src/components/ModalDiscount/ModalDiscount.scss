@@ -81,11 +81,11 @@
 }
 
 .modal__content-info {       
-    padding: clamp(16px, 4vw, 32px) clamp(16px, 5vw, 32px); // ✅ адаптивные паддинги
+    padding: clamp(16px, 4vw, 32px) clamp(16px, 5vw, 32px);
 }
 
 .modal__content-name p {    
-    font-size: clamp(18px, 2.2vw, 20px); // ✅ от 18 до 20
+    font-size: clamp(18px, 2.2vw, 20px);
     font-weight: 500;
     color: var(--color-txt-black);
     margin-bottom: 16px;
@@ -146,3 +146,5 @@
     align-items: center;    
     z-index: 1000;
 }
+
+// @media 
