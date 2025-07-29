@@ -11,22 +11,12 @@
         color: var(--color-txt-black);
 
         &-title{
-            font-size: 64px;
+            font-size: clamp(40px, 5vw, 56px);
             white-space: nowrap;
 
-            @media (max-width: 768px) {
-                font-size: 56px;
-            }
-            @media (max-width: 480px) {
-                font-size: 48px;
-                white-space: wrap;
-            }
-            @media (max-width: 360px) {
-                font-size: 40px;
-            }
         }
         &-btn {
-            @media (max-width: 360px) {
+            @media (max-width: 480px) {
                 display: none;
             }
         }
@@ -106,7 +96,7 @@
             }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
             display: flex;
         }
     }
