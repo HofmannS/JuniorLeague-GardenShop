@@ -10,13 +10,19 @@ const Footer = () => {
       <div className="footer__grid">
             <div className="footer__card">
                 <p className="footer__label">Phone</p>
+                <a href="tel:+49 999 999 99 99<">
                 <p className="footer__info">+49 999 999 99 99</p>
+                </a>
             </div>
             <div className="footer__card">
                 <p className="footer__label">Socials</p>
                 <div className="footer__icons">
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
             <AiFillInstagram size={43} color='var(--color-txt-black)' />
+            </a>
+            <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">
             <RiWhatsappFill size={43} color='var(--color-txt-black)' />
+            </a>
           </div>
             </div>
             <div className="footer__card">
