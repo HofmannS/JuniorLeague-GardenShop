@@ -7,7 +7,7 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite(state, action) {
-      const index = state.indexOf(action.payload) //код Сергея
+      const index = state.findIndex(id => id === action.payload)
       
       if (index > -1) {
         state.splice(index, 1)
