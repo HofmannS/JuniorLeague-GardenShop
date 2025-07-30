@@ -81,9 +81,9 @@ const ModalDiscount = ({ onClose }) => {
     const isFavorite = favorites.includes(randomProduct.id);
 
     const handleToggleFavorite = () => {
-        dispatch(toggleFavorite(randomProduct.id)); // before
+        dispatch(toggleFavorite(randomProduct.id));
 
-        
+
 
         window.dispatchEvent(new Event("favoritesUpdated"));
     };
@@ -107,9 +107,13 @@ const ModalDiscount = ({ onClose }) => {
                     <img src={`${apiUrl}${image}`} alt={title} />
                 </div>
                 <div className='modal__content-discont'>-50%</div>
-                <div className='modal__content-favorite' onClick={handleToggleFavorite}>
+                {/* <div className='modal__content-favorite' onClick={handleToggleFavorite}>
                     <img src={isFavorite ? HeartLiked : HeartEmpty} alt="Heart" />
-                </div>
+                </div> */}
+                <button
+                    className={`modal__content-favorite favorite ${isFavorite ? "active" : ""}`}
+                    onClick={handleToggleFavorite}
+                ></button>
                 <div className='modal__content-info'>
                     <div className='modal__content-name'>
                         <p>{title}</p>
