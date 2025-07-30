@@ -1,5 +1,6 @@
 import React from 'react'
 import './CartProduct.scss'
+import { Link } from 'react-router-dom'
 
 const CartProduct = ({ id, image, title, price, discont_price, quantity, onRemove, onIncrease, onDecrease }) => {
   const formatPrice = (value) => {
@@ -15,7 +16,9 @@ const CartProduct = ({ id, image, title, price, discont_price, quantity, onRemov
       </div>
       <div className='cart-product__info'>
         <div className='cart-product__header'>
-          <p className='cart-product__title'>{title}</p>
+          <Link to={`/product/${id}`}>
+            <p className='cart-product__title'>{title}</p>
+          </Link>
           <button className='cart-product__remove-btn' onClick={() => onRemove(id)}></button>
         </div>
 
