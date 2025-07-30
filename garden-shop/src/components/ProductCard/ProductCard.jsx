@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "@store/features/cartSlice";
-import { toggleFavorite } from "@store/features/favoriteSlice";
+import { addToCart, removeFromCart } from "@features/cartSlice";
+import { toggleFavorite } from "@features/favoriteSlice";
 import "./ProductCard.scss";
 
 

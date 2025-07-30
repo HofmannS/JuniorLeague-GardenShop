@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import './CartForm.scss'
 import octagon from '../../../assets/images/icons/x-octagon.png'
 import { useDispatch } from 'react-redux'
-import { clearCart } from '@/store/features/cartSlice'
+import { clearCart } from '@features/cartSlice'
 
 const CartForm = ({ cartItems }) => {
   const [isSubmitted, setIsSubmitted] = useState(false)

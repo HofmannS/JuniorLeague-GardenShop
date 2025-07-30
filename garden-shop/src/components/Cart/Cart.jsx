@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import LineButton from '@components/LineButton/LineButton'
 import CartProduct from '@components/Cart/CartProduct/CartProduct'
-import { removeFromCart, increaseQuantity, decreaseQuantity } from '@/store/features/cartSlice'
+import { removeFromCart, increaseQuantity, decreaseQuantity } from '@features/cartSlice'
 import './Cart.scss'
 import CartForm from '@components/Cart/CartForm/CartForm'
 import { Link } from 'react-router-dom'

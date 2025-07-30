@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '@store/features/categoriesSlice';
+import { fetchCategories } from '@features/categoriesSlice';
 import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import './CategoriesPage.scss'
