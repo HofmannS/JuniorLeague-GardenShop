@@ -22,7 +22,7 @@ const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}
   }
 
   useEffect(() => {
-    setIsFavorite(favorites.includes(id));
+    setIsFavorite(favorites.includes(id)); //изменила
     setIsInCart(cart.some((item) => item.id === id));
   }, [favorites, cart, id]);
   

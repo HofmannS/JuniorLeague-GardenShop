@@ -332,6 +332,7 @@
 
         &__button-cart {
             width: 100%;
+            min-height: clamp(2.9375rem, 4vw, 3.625rem);
         }
     }
 

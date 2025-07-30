@@ -42,7 +42,7 @@ const Cart = () => {
             <p className="cart-panel__empty-text">
               Looks like you have no items in your basket currently.
             </p>
-            <button className='cart-panel__empty-btn'>Continue Shopping</button>
+            <Link to="/products"><button className='cart-panel__empty-btn'>Continue Shopping</button></Link>
           </div>
         )}
         <div className='cart-panel__back'>
