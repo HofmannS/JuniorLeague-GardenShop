@@ -78,10 +78,13 @@ const ModalDiscount = ({ onClose }) => {
         window.dispatchEvent(new Event("cartUpdated"));
         onClose();
     }
-    const isFavorite = favorites.includes(randomProduct.id);   
+    const isFavorite = favorites.includes(randomProduct.id);
 
     const handleToggleFavorite = () => {
-        dispatch(toggleFavorite(randomProduct.id));
+        dispatch(toggleFavorite(randomProduct.id)); // before
+
+        
+
         window.dispatchEvent(new Event("favoritesUpdated"));
     };
 
