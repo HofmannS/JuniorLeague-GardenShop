@@ -1,4 +1,4 @@
-.skeleton__category__list {
+.skeleton-category__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 32px;
@@ -6,9 +6,9 @@
   padding-bottom: 80px;
   }
   
-  .skeleton__category__item {
-    max-width: 316px;
-    height: 392px;
+  .skeleton-category__item {
+    max-width: clamp(210px, 25vw, 316px);
+    height: clamp(255px, 25vw, 392px);
     background: var(--color-cards);
     border-radius: var(--radius-big);
   }

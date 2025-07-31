@@ -50,7 +50,7 @@ const ModalDiscount = ({ onClose }) => {
     if (loading || !randomProduct) {
         return (
             <div className="modal" onClick={(e) => e.stopPropagation()}>
-                <p className="modal__loading">Loading...</p>
+                <p className="modal__loading"></p>
             </div>
         );
     }
@@ -58,7 +58,7 @@ const ModalDiscount = ({ onClose }) => {
     if (error) {
         return (
             <div className="modal" onClick={(e) => e.stopPropagation()}>
-                <p className="modal__error">Ошибка: {error}</p>
+                <p className="modal__error">Error: {error}</p>
             </div>
         );
     }

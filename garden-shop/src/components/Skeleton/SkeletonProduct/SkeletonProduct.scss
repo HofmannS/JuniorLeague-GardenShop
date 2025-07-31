@@ -1,6 +1,7 @@
-.skeleton__product__item {
+.skeleton-product__item {
   max-width: 316px;
-  height: 422px;
+  width: 100%;
+  height: clamp(335px, 50vw, 422px);
   background: var(--color-cards);
   border-radius: var(--radius-big);
 }
