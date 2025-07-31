@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '@store/features/categoriesSlice'
+import { fetchCategories } from '@features/categoriesSlice'
 import './Breadcrumbs.scss'
 
 const crumbNames = {

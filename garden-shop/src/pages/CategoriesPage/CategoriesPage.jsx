@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '@store/features/categoriesSlice';
+import { fetchCategories } from '@features/categoriesSlice';
 import CategoryCard from '@components/CategoryCard/CategoryCard';
 import Panel from '@components/Panel/Panel';
 import './CategoriesPage.scss'
 import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs';
-import SkeletonСategory from '@components/Skeleton/SkeletonCategory/SkeletonCategory';
+import SkeletonCategory from '@components/Skeleton/SkeletonCategory/SkeletonCategory';
 
 
 const CategoriesPage = () => {
@@ -31,8 +31,9 @@ const CategoriesPage = () => {
         title="Categories"
         link="/categories"
         items={categories}
+        item_limit={5}
         isLoading={loading}
-        skeleton={(item_limit) => <SkeletonСategory categoryLimit={item_limit} />}
+        skeleton={(item_limit) => <SkeletonCategory categoryLimit={item_limit} />} 
         renderItem={(item) => (
           <CategoryCard
             key={item.id}

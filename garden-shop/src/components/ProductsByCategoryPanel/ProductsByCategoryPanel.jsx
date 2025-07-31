@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '@store/features/productSlice';
+import { fetchProducts } from '@features/productSlice';
 import Panel from '@components/Panel/Panel';
 import ProductCard from '@components/ProductCard/ProductCard';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';
@@ -12,11 +12,13 @@ const ProductsByCategoryPanel = ({
     customProducts = null, 
     title = 'All products',
     from = null,
-    categoryId = null
+    categoryId = null,
+    isLoading = false,
+    error = null
 }) => {
     const dispatch = useDispatch();
 
-    const { products: allProducts, loading, error } = useSelector((state) => state.products);
+    const { products: allProducts } = useSelector((state) => state.products);
     const products = customProducts !== null ? customProducts : allProducts;
     
 
@@ -75,7 +77,7 @@ const ProductsByCategoryPanel = ({
             title={title}
             items={filteredAndSortedProducts}
             item_limit={item_limit}
-            isLoading={!customProducts && loading}
+            isLoading={isLoading}
             skeleton={(item_limit) => <SkeletonProduct productsLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard

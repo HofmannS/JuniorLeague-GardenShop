@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProducts } from "@store/features/productSlice";
-import { toggleFavorite } from "@store/features/favoriteSlice";
-import { addToCart } from "@store/features/cartSlice";
+import { fetchProducts } from "@features/productSlice";
+import { toggleFavorite } from "@features/favoriteSlice";
+import { addToCart } from "@features/cartSlice";
 
 import IcxImage from "../../assets/Images/ic x.png"
-import HeartEmpty from "../../assets/Images/icons/basket=like.png"
-import HeartLiked from "../../assets/Images/icons/basket=liked.png"
 import "./ModalDiscount.scss"
 
 const ModalDiscount = ({ onClose }) => {
@@ -107,9 +105,6 @@ const ModalDiscount = ({ onClose }) => {
                     <img src={`${apiUrl}${image}`} alt={title} />
                 </div>
                 <div className='modal__content-discont'>-50%</div>
-                {/* <div className='modal__content-favorite' onClick={handleToggleFavorite}>
-                    <img src={isFavorite ? HeartLiked : HeartEmpty} alt="Heart" />
-                </div> */}
                 <button
                     className={`modal__content-favorite favorite ${isFavorite ? "active" : ""}`}
                     onClick={handleToggleFavorite}

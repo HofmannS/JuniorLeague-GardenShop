@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '@/store/features/cartSlice'
-import { toggleFavorite } from '@/store/features/favoriteSlice'
+import { addToCart } from '@features/cartSlice'
+import { toggleFavorite } from '@features/favoriteSlice'
 import './ProductDetails.scss'
 
 const ProductDetails = ({ product, loading, error }) => {
@@ -14,12 +14,10 @@ const ProductDetails = ({ product, loading, error }) => {
     const isFavorite = favorites.includes(product?.id)
   
     useEffect(() => {
-        // Синхронизация избранного и корзины составяем, т.к. нужно отслеживать обновления из localStorage
         window.addEventListener('favoritesUpdated', () => {})
         window.addEventListener('cartUpdated', () => {})
         return () => {
           window.removeEventListener('favoritesUpdated', () => {})
-        //   window.removeEventListener('cartUpdated', () => {})
         }
       }, [])
     
