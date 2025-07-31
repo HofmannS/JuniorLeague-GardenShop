@@ -5,39 +5,33 @@ import { addToCart, removeFromCart } from "@features/cartSlice";
 import { toggleFavorite } from "@features/favoriteSlice";
 import "./ProductCard.scss";
 
-
-
-const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}) => {
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId }) => {
   const dispatch = useDispatch();
-
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
 
-  let discont_percent = null;
-  if (discont_price !== null) {
-    discont_percent = (((price - discont_price) / price) * 100).toFixed(1);
-  }
-
   useEffect(() => {
-    setIsFavorite(favorites.includes(id)); //изменила
+    setIsFavorite(favorites.includes(id));
     setIsInCart(cart.some((item) => item.id === id));
   }, [favorites, cart, id]);
-  
+
+  const discountPercent = discont_price
+    ? (((price - discont_price) / price) * 100).toFixed(1)
+    : null;
 
   const handleToggleFavorite = (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    e.preventDefault();    
     dispatch(toggleFavorite(id));
     window.dispatchEvent(new Event("favoritesUpdated"));
   };
 
   const handleToggleCart = (e) => {
-    e.stopPropagation();
     e.preventDefault();
-
+    e.stopPropagation();
     if (isInCart) {
       dispatch(removeFromCart(id));
     } else {
@@ -47,51 +41,47 @@ const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}
   };
 
   return (
-    <div className="product__item">
-      <Link to={`/product/${id}`}
-      state={{
-        from,
-        categoryId,
-        productID: id,
-        productTitle: title
-      }}
+    <div className="product-card">
+      <Link
+        to={`/product/${id}`}
+        state={{ from, categoryId, productID: id, productTitle: title }}
       >
-        <div className="product__item__image">
+        <div className="product-card__image-wrapper">
           <img
+            className="product-card__image"
             src={`${import.meta.env.VITE_APP_API_URL}${image}`}
             alt={title}
           />
-
-          {discont_percent && (
-            <div className="product__item__discont">-{discont_percent}%</div>
+          {discountPercent && (
+            <div className="product-card__discount">-{discountPercent}%</div>
           )}
         </div>
-        <div className="product__line"></div>
-        <div className="product__item__content">
-          <p>{title}</p>
-        </div>
-        <div className="product__item__price">
-          {discont_price ? (
-    <>
-      <p className="product__item__price__new">${discont_price}</p>
-      <p className="product__item__price__old">
-        ${price}
-      </p>
-    </>
-  ) : (
-    <p className="product__item__price__new">${price}</p>
-  )}
+
+        <div className="product-card__title">{title}</div>
+
+        <div className="product-card__price">
+          <span className="product-card__price-new">
+            ${discont_price || price}
+          </span>
+          {discont_price && (
+            <span className="product-card__price-old">${price}</span>
+          )}
         </div>
       </Link>
-      <div className="icons">
+
+      <div className="product-card__icons">
         <button
-          className={`icons__button favorite ${isFavorite ? "active" : ""}`}
+          className={`product-card__icon product-card__icon--favorite ${
+            isFavorite ? "is-active" : ""
+          }`}
           onClick={handleToggleFavorite}
-        ></button>
+        />
         <button
-          className={`icons__button cart ${isInCart ? "active" : ""}`}
+          className={`product-card__icon product-card__icon--cart ${
+            isInCart ? "is-active" : ""
+          }`}
           onClick={handleToggleCart}
-        ></button>
+        />
       </div>
     </div>
   );

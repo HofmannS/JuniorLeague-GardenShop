@@ -1,6 +1,5 @@
 import React from 'react'
 import Select from 'react-select'
-import './CustomSelect.scss'
 
 const CustomSelect = ({ value, onChange, options }) => {
   const customStyles = {
@@ -27,7 +26,7 @@ const CustomSelect = ({ value, onChange, options }) => {
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: 'var(--color-txt-black)',
+      color: '#424436',
       fontSize: '16px',
       display: 'flex',
       alignItems: 'center',
@@ -48,7 +47,7 @@ const CustomSelect = ({ value, onChange, options }) => {
         : state.isFocused
           ? 'rgba(0,0,0,0.05)'
           : '#FFFFF1',
-      color: state.isSelected ? 'var(--color-txt-black)' : 'var(--color-txt-muted)',
+      color: state.isSelected ? '#424436' : 'var(--color-txt-muted)',
       padding: '8px 12px',
       cursor: 'pointer',
       fontSize: '16px',
