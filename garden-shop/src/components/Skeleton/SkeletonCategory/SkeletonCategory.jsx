@@ -1,14 +1,14 @@
-import React from 'react'
-import './SkeletonCategory.scss'
+import React from 'react';
+import './SkeletonCategory.scss';
 
-function SkeletonCategory({categoryLimit = 4}) {
+function SkeletonCategory({ categoryLimit = 4 }) {
   return (
-<>
-  {Array.from({ length: categoryLimit }).map((_, index) => (
-    <div key={index} className="skeleton__category__item"></div>
-  ))}
-</>
-  )
+    <>
+      {Array.from({ length: categoryLimit }).map((_, index) => (
+        <div key={index} className="skeleton-category__item"></div>
+      ))}
+    </>
+  );
 }
 
-export default SkeletonCategory
+export default SkeletonCategory;
