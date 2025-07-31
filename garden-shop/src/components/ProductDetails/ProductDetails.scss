@@ -77,14 +77,14 @@
         background-position: center;
         cursor: pointer;
         transition: background-image 0.3s ease;
-        background-image: url('@/assets/Images/icons/basket=like.png');
+        background-image: url('@/assets/images/icons/basket=like.png');
 
         &:hover {
-            background-image: url('@/assets/Images/icons/basket=likehover.png');
+            background-image: url('@/assets/images/icons/basket=likehover.png');
         }
 
         &.active {
-            background-image: url('@/assets/Images/icons/basket=liked.png');
+            background-image: url('@/assets/images/icons/basket=liked.png');
         }
 
         @media (max-width: 480px) {

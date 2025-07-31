@@ -4,7 +4,7 @@ import { fetchProducts } from "@features/productSlice";
 import { toggleFavorite } from "@features/favoriteSlice";
 import { addToCart } from "@features/cartSlice";
 
-import IcxImage from "../../assets/Images/ic x.png"
+import IcxImage from "../../assets/images/ic x.png"
 import "./ModalDiscount.scss"
 
 const ModalDiscount = ({ onClose }) => {

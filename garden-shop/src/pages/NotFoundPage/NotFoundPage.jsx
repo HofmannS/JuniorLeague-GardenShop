@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import FourImage from "../../assets/Images/4.png"
-import CactusImage from "../../assets/Images/Cactus.png"
+import FourImage from "../../assets/images/4.png"
+import CactusImage from "../../assets/images/Cactus.png"
 import "./NotFoundPage.scss"
 
 const NotFoundPage = () => {

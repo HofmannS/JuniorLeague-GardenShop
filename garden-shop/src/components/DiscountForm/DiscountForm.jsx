@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DiscountFormImage from "../../assets/DiscountForm.png"
 import "./DiscountForm.scss"
 import { useForm } from 'react-hook-form'
-import octagon from "../../assets/Images/icons/x-octagon.png"
+import octagon from "../../assets/images/icons/x-octagon.png"
 
 const DiscountForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)

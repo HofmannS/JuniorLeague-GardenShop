@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./HeaderIcons.scss";
 import { NavLink } from "react-router-dom";
-import handbagIconDark from "@/assets/Images/icons/basket=empty.png";
-import favoriteIconDark from "@/assets/Images/icons/basket=heartempty.png";
-import handbagIconLight from "@/assets/Images/icons/bag-white.png";
-import favoriteIconLight from "@/assets/Images/icons/heart-white.png";
+import handbagIconDark from "@/assets/images/icons/basket=empty.png";
+import favoriteIconDark from "@/assets/images/icons/basket=heartempty.png";
+import handbagIconLight from "@/assets/images/icons/bag-white.png";
+import favoriteIconLight from "@/assets/images/icons/heart-white.png";
 
 const HeaderIcons = () => {
   const [favoritesCount, setFavoritesCount] = useState(0);

@@ -3,7 +3,7 @@ import ThemeToggle from "./SwitchThemeToggle/SwitchThemeToggle";
 import Navbar from "./Navbar/Navbar";
 import HeaderIcons from "./HeaderIcons/HeaderIcons.jsx";
 import "./Header.scss";
-import logoIcon from "../../assets/Images/logo.svg";
+import logoIcon from "../../assets/images/logo.svg";
 import { Link} from "react-router-dom";
 import BurgerMenu from "./BurgerMenu/BurgerMenu.jsx";
 import ModalDiscount from "../../components/ModalDiscount/ModalDiscount.jsx";
