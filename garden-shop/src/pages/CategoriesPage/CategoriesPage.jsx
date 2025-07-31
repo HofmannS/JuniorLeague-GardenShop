@@ -9,9 +9,7 @@ import SkeletonCategory from '@components/Skeleton/SkeletonCategory/SkeletonCate
 
 
 const CategoriesPage = () => {
-
   const dispatch = useDispatch();
-
   const { categories, loading, error } = useSelector((state) => state.categories);
 
   useEffect(() => {
@@ -20,9 +18,6 @@ const CategoriesPage = () => {
     }
   }, [dispatch, categories.length]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <div className='container__categories'>
@@ -33,7 +28,8 @@ const CategoriesPage = () => {
         items={categories}
         item_limit={5}
         isLoading={loading}
-        skeleton={(item_limit) => <SkeletonCategory categoryLimit={item_limit} />} 
+        error={error}
+        skeleton={(item_limit) => <SkeletonCategory categoryLimit={item_limit} />}
         renderItem={(item) => (
           <CategoryCard
             key={item.id}

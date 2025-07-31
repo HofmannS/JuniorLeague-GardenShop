@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryPanel from '@components/CategoryPanel/CategoryPanel'
 import Banner from '@components/Banner/Banner'
 import SalesPanel from '@components/SalesPanel/SalesPanel'
-import DiscountForm from '../../components/DiscountForm/DiscountForm'
+import DiscountForm from '@components/DiscountForm/DiscountForm'
 
 const HomePage = () => {
   return (
