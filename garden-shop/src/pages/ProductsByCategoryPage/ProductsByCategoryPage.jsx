@@ -16,9 +16,6 @@ const ProductsByCategoryPage = () => {
   }, [dispatch, categoryId])
 
 
-  if (loading) return <p>Загрузка...</p>;
-  if (error) return <p>Ошибка: {error}</p>;
-
   return (
     <div>
       <Breadcrumbs />
@@ -27,6 +24,8 @@ const ProductsByCategoryPage = () => {
         title={categoryTitle}
         from='categories'
         categoryId={categoryId}
+        isLoading={loading}
+        error={error}
       />
     </div>
   );
