@@ -1,86 +1,78 @@
-.filter__sort-bar {
+.filter-sort-bar {
   display: grid;
   gap: 32px;
   padding-bottom: 40px;
   grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
   align-items: flex-end;
-  
 
   @media (max-width: 1000px) {
-    grid-template-columns:  repeat(2, max-content);
+    grid-template-columns: repeat(2, max-content);
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 
-
-  &__container {
-    min-width: 0;
+  &__block {
     display: flex;
     gap: 12px;
     align-items: center;
-    
+    flex-wrap: wrap;
+  }
 
+  &__label {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    color: var(--color-txt-black);
+  }
 
-    &__titles {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 130%;
-      padding-right: 16px;
-      color: var(--color-txt-black);
+  &__input {
+    padding: 8px 12px;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    height: 34px;
+    width: 112px;
+    font-size: 16px;
+    color: #424436;
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  &__checkbox {
+    width: 36px;
+    height: 36px;
+    appearance: none;
+    background: white;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 16px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -60%) rotate(45deg);
+      display: none;
     }
 
-    input[type="number"],
-    select {
-      padding: 8px 12px;
-      border: 1px solid var(--color-line);
-      border-radius: 8px;
-      height: 34px;
-      width: 112px;
-      
-    }
-
-    input[type="checkbox"] {
-      width: 36px;
-      height: 36px;
-      appearance: none;
-      -webkit-appearance: none;
-      background: white;
-      border: 1px solid var(--color-line);
-      border-radius: var(--radius-small);
-      cursor: pointer;
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 8px;
-        height: 16px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        transform: translate(-50%, -60%) rotate(45deg);
-        display: none;
-      }
-    }
-
-    input[type="checkbox"]:checked {
+    &:checked {
       background: var(--color-green);
 
       &::after {
         display: block;
       }
-    }
-
-    label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
     }
   }
 }

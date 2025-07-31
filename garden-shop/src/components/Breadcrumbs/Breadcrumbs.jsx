@@ -67,7 +67,7 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
                     name: product.title,
                     path: `/product/${params.productId}`
                 })
-            } else { //если продукт не найден
+            } else {
                 crumbs.push({
                     name: 'Product',
                     path: `/product/${params.productId}`
@@ -75,8 +75,8 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
             }
         }
     } else if (pathname !== '/') {
-        let builtPath = '' //строящийся путь
-        pathname.slice(1).split('/').forEach(partPath => {  //часть пути
+        let builtPath = ''
+        pathname.slice(1).split('/').forEach(partPath => {
             builtPath += `/${partPath}`
             crumbs.push({
                 name: breadcrumbTitle[builtPath] || crumbNames[builtPath] || partPath,

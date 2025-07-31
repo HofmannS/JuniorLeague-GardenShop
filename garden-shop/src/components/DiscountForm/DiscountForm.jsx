@@ -1,134 +1,132 @@
 import React, { useEffect, useState } from 'react'
-import DiscountFormImage from "../../assets/DiscountForm.png"
-import "./DiscountForm.scss"
 import { useForm } from 'react-hook-form'
-import octagon from "../../assets/Images/icons/x-octagon.png"
+import DiscountFormImage from '../../assets/DiscountForm.png'
+import octagon from '../../assets/Images/icons/x-octagon.png'
+import './DiscountForm.scss'
+
+const FormError = ({ message }) => (
+  <p className="form__error-message">
+    <img src={octagon} alt="error-icon" />
+    {message}
+  </p>
+)
 
 const DiscountForm = () => {
-    const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-    useEffect(() => {
-        const alreadySubmitted = localStorage.getItem('discountSubmitted');
-        if (alreadySubmitted === 'true') {
-            setIsSubmitted(true);
-        }
-    }, [])
-
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        mode: 'onSubmit'
-    })
-
-    const onSubmit = (data) => {
-
-        const discountRequests = JSON.parse(localStorage.getItem('discountRequests') || '[]')
-        const updatedDiscounts = [...discountRequests,
-        {
-            ...data,
-            submittedAt: new Date().toISOString(),
-            discount: '5%'
-        }]
-        localStorage.setItem('discountRequests', JSON.stringify(updatedDiscounts))
-        localStorage.setItem('lastDiscountUser', JSON.stringify(data))
-        localStorage.setItem('discountSubmitted', 'true');
-
-        setIsSubmitted(true)
-        reset()
+  useEffect(() => {
+    const hasSubmittedBefore = localStorage.getItem('discountSubmitted') === 'true'
+    if (hasSubmittedBefore) {
+      setIsSubmitted(true)
     }
+  }, [])
 
-    const nameRegister = register("name", {
-        required: "Required field",
-        pattern: {
-            value: /^[A-Za-zА-Яа-яЁё\s'-]+$/,
-            message: "Only letters, spaces, hyphens and apostrophes allowed"
-        },
-        validate: value => value.trim() !== "" || "Name cannot be only spaces"
-    })
-    const phoneRegister = register("phone", {
-        required: "Required field",
-        pattern: {
-            value: /^\+?[0-9\s\-()]{7,20}$/,
-            message: "Please enter a valid phone number"
-        },
-        validate: value => value.trim() !== "" || "Phone cannot be only spaces"
-    })
-    const emailRegister = register('email', {
-        required: "Required field",
-        pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: "Please enter a valid email address"
-        }
-    })
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({ mode: 'onSubmit' })
 
-    return (
-        <div className='container'>
-            <div className='sale'>
-                <h2>5% off on the first order</h2>
+  const onSubmitHandler = (data) => {
+    const existing = JSON.parse(localStorage.getItem('discountRequests') || '[]')
+    const updated = [
+      ...existing,
+      {
+        ...data,
+        submittedAt: new Date().toISOString(),
+        discount: '5%'
+      }
+    ]
 
-                <div className='sale__content'>
-                    <img className='sale__image' src={DiscountFormImage} alt="DiscountForm" />
+    localStorage.setItem('discountRequests', JSON.stringify(updated))
+    localStorage.setItem('lastDiscountUser', JSON.stringify(data))
+    localStorage.setItem('discountSubmitted', 'true')
 
-                    <div className='sale__form'>
-                        <form className='form' onSubmit={handleSubmit(onSubmit)}>
-                            <div className='form__item'>
-                                <input
-                                    type='text'
-                                    placeholder='Name'
-                                    {...nameRegister}
-                                    disabled={isSubmitted}
-                                />
-                                {errors.name && (
-                                    <p className='error__message'>
-                                        <img src={octagon} alt="error-icon" />
-                                        {errors.name.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div className='form__item'>
-                                <input
-                                    type='tel'
-                                    placeholder='Phone number'
-                                    {...phoneRegister}
-                                    disabled={isSubmitted}
-                                />
-                                {errors.phone && (
-                                    <p className='error__message'>
-                                        <img src={octagon} alt="error-icon" />
-                                        {errors.phone.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div className='form__item'>
-                                <input
-                                    type='email'
-                                    placeholder='Email'
-                                    {...emailRegister}
-                                    disabled={isSubmitted}
-                                />
-                                {errors.email && (
-                                    <p className='error__message'>
-                                        <img src={octagon} alt="error-icon" />
-                                        {errors.email.message}
-                                    </p>
-                                )}
-                                {isSubmitted && (
-                                    <p className='success__message'>The discount has been successfully sent by email</p>
-                                )}
-                            </div>
-                            <div className='form__button'>
-                                <button
-                                    type='submit'
-                                    className={`button ${isSubmitted ? 'submitting' : ''}`}
-                                    disabled={isSubmitted}
-                                >
-                                    {isSubmitted ? 'Request Submitted' : 'Get a discount'}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    setIsSubmitted(true)
+    reset()
+  }
+
+  return (
+    <div className="container">
+      <div className="sale">
+        <h2>5% off on the first order</h2>
+
+        <div className="sale__content">
+          <img className="sale__image" src={DiscountFormImage} alt="Discount banner" />
+
+          <div className="sale__form">
+            <form className="form" onSubmit={handleSubmit(onSubmitHandler)}>
+              <div className="form__item">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  disabled={isSubmitted}
+                  {...register('name', {
+                    required: 'Required field',
+                    pattern: {
+                      value: /^[A-Za-zА-Яа-яЁё\s'-]+$/,
+                      message: 'Only letters, spaces, hyphens and apostrophes allowed'
+                    },
+                    validate: (value) => value.trim() !== '' || 'Name cannot be only spaces'
+                  })}
+                />
+                {errors.name && <FormError message={errors.name.message} />}
+              </div>
+
+              <div className="form__item">
+                <input
+                  type="tel"
+                  placeholder="Phone number"
+                  disabled={isSubmitted}
+                  {...register('phone', {
+                    required: 'Required field',
+                    pattern: {
+                      value: /^\+?[0-9\s\-()]{7,20}$/,
+                      message: 'Please enter a valid phone number'
+                    },
+                    validate: (value) => value.trim() !== '' || 'Phone cannot be only spaces'
+                  })}
+                />
+                {errors.phone && <FormError message={errors.phone.message} />}
+              </div>
+
+              <div className="form__item">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  disabled={isSubmitted}
+                  {...register('email', {
+                    required: 'Required field',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Please enter a valid email address'
+                    }
+                  })}
+                />
+                {errors.email && <FormError message={errors.email.message} />}
+                {isSubmitted && (
+                  <p className="form__success-message">
+                    The discount has been successfully sent by email
+                  </p>
+                )}
+              </div>
+
+              <div className="form__button">
+                <button
+                  type="submit"
+                  className={`button ${isSubmitted ? 'button--submitted' : ''}`}
+                  disabled={isSubmitted}
+                >
+                  {isSubmitted ? 'Request Submitted' : 'Get a discount'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
-export default DiscountForm            
+export default DiscountForm
