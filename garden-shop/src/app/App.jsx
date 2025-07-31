@@ -10,10 +10,12 @@ import NotFoundPage from '@pages/NotFoundPage/NotFoundPage'
 import ProductsByCategoryPage from '@pages/ProductsByCategoryPage/ProductsByCategoryPage'
 import DiscountProductsPage from '@pages/DiscountProductsPage/DiscountProductsPage'
 import ProductDetailsPage from '@pages/ProductDetailsPage/ProductDetailsPage'
+import ScrollToTop from '@components/ScrollToTop/ScrollToTop'
 
 const App = () => {
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
