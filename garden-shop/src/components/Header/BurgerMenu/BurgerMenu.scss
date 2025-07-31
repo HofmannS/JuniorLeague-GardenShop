@@ -1,0 +1,89 @@
+.burger {
+  &__icon {
+    display: none;
+    cursor: pointer;
+    color: var(--color-txt-black);
+
+    @media (max-width: 768px) {
+      display: block;
+      margin-left: 20px;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 1000;
+    width: 80%;
+    max-width: 282px;
+    height: 100%;
+    padding: 12px 32px;
+    background-color: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    
+    transition: right 0.3s ease;
+
+    &.open {
+      right: 0;
+    }
+
+    &-close {
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      color: var(--color-txt-black);
+      margin-bottom: 36px;
+    }
+
+    &-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+
+      li a {
+        color: var(--color-txt-black);
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 130%;
+
+        @media (max-width: 360px) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  &__discount {
+        padding: 6px 16px;
+        border-radius: var(--radius-small);
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 126%;
+        color: white;
+        background-color: var(--color-green);
+        border: none;
+        cursor: pointer;
+        margin-top: 36px;
+
+        @media (max-width: 360px) {
+          font-size: 18px;
+          
+        }
+      }
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

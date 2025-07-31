@@ -1,12 +1,26 @@
 .filter__sort-bar {
-  display: flex;
+  display: grid;
+  gap: 32px;
   padding-bottom: 40px;
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  align-items: flex-end;
+  
+
+  @media (max-width: 1000px) {
+    grid-template-columns:  repeat(2, max-content);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
 
   &__container {
+    min-width: 0;
     display: flex;
     gap: 12px;
     align-items: center;
+
 
 
     &__titles {
@@ -22,7 +36,9 @@
       padding: 8px 12px;
       border: 1px solid var(--color-line);
       border-radius: 8px;
-      height: 36px;
+      height: 34px;
+      width: 112px;
+      
     }
 
     input[type="checkbox"] {

@@ -1,24 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DiscountFormImage from "../../assets/DiscountForm.png"
 import "./DiscountForm.scss"
 import { useForm } from 'react-hook-form'
-import { XOctagon } from 'lucide-react'
+import octagon from "../../assets/Images/icons/x-octagon.png"
 
 const DiscountForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
+
+    useEffect(() => {
+        const alreadySubmitted = localStorage.getItem('discountSubmitted');
+        if (alreadySubmitted === 'true') {
+            setIsSubmitted(true);
+        }
+    }, [])
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: 'onSubmit'
     })
 
     const onSubmit = (data) => {
-        console.log("Submitted data:", data)
+
+        const discountRequests = JSON.parse(localStorage.getItem('discountRequests') || '[]')
+        const updatedDiscounts = [...discountRequests,
+        {
+            ...data,
+            submittedAt: new Date().toISOString(),
+            discount: '5%'
+        }]
+        localStorage.setItem('discountRequests', JSON.stringify(updatedDiscounts))
+        localStorage.setItem('lastDiscountUser', JSON.stringify(data))
+        localStorage.setItem('discountSubmitted', 'true');
+
         setIsSubmitted(true)
         reset()
-
-        setTimeout(() => {
-            setIsSubmitted(false)
-        }, 3000)
     }
 
     const nameRegister = register("name", {
@@ -60,10 +74,11 @@ const DiscountForm = () => {
                                     type='text'
                                     placeholder='Name'
                                     {...nameRegister}
+                                    disabled={isSubmitted}
                                 />
                                 {errors.name && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.name.message}
                                     </p>
                                 )}
@@ -73,10 +88,11 @@ const DiscountForm = () => {
                                     type='tel'
                                     placeholder='Phone number'
                                     {...phoneRegister}
+                                    disabled={isSubmitted}
                                 />
                                 {errors.phone && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.phone.message}
                                     </p>
                                 )}
@@ -86,10 +102,11 @@ const DiscountForm = () => {
                                     type='email'
                                     placeholder='Email'
                                     {...emailRegister}
+                                    disabled={isSubmitted}
                                 />
                                 {errors.email && (
                                     <p className='error__message'>
-                                        <XOctagon className="error__icon" />
+                                        <img src={octagon} alt="error-icon" />
                                         {errors.email.message}
                                     </p>
                                 )}
@@ -98,7 +115,13 @@ const DiscountForm = () => {
                                 )}
                             </div>
                             <div className='form__button'>
-                                <button type='submit'>Get a discount</button>
+                                <button
+                                    type='submit'
+                                    className={`button ${isSubmitted ? 'submitting' : ''}`}
+                                    disabled={isSubmitted}
+                                >
+                                    {isSubmitted ? 'Request Submitted' : 'Get a discount'}
+                                </button>
                             </div>
                         </form>
                     </div>

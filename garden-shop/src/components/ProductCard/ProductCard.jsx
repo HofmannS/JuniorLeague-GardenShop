@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { SlHandbag, SlHeart } from "react-icons/sl";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "@features/cartSlice";
+import { toggleFavorite } from "@features/favoriteSlice";
 import "./ProductCard.scss";
 
-const ProductCard = ({ id, image, title, price, discont_price }) => {
-const [isFavorite, setIsFavorite] = useState(false);
-const [isInCart, setIsInCart] = useState(false);
+
+
+const ProductCard = ({ id, image, title, price, discont_price, from, categoryId}) => {
+  const dispatch = useDispatch();
+
+  const favorites = useSelector((state) => state.favorites);
+  const cart = useSelector((state) => state.cart);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
 
   let discont_percent = null;
   if (discont_price !== null) {
@@ -13,52 +22,40 @@ const [isInCart, setIsInCart] = useState(false);
   }
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    setIsFavorite(favorites.includes(id));
-    setIsInCart(cart.includes(id));
-  }, [id]);
+    setIsFavorite(favorites.includes(id)); //изменила
+    setIsInCart(cart.some((item) => item.id === id));
+  }, [favorites, cart, id]);
   
 
-  const toggleFavorite = (e) => {
+  const handleToggleFavorite = (e) => {
+    e.stopPropagation();
+    e.preventDefault();    
+    dispatch(toggleFavorite(id));
+    window.dispatchEvent(new Event("favoritesUpdated"));
+  };
+
+  const handleToggleCart = (e) => {
     e.stopPropagation();
     e.preventDefault();
 
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    let updatedFavorites;
-
-    if (favorites.includes(id)) {
-      updatedFavorites = favorites.filter((favId) => favId !== id);
+    if (isInCart) {
+      dispatch(removeFromCart(id));
     } else {
-      updatedFavorites = [...favorites, id];
+      dispatch(addToCart({ id, image, title, price, discont_price, quantity: 1 }));
     }
-
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    setIsFavorite(!isFavorite);
+    window.dispatchEvent(new Event("cartUpdated"));
   };
-
-  const toggleCart = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let updatedCart;
-
-    if (cart.includes(id)) {
-      updatedCart = cart.filter((cartId) => cartId !== id);
-    } else {
-      updatedCart = [...cart, id];
-    }
-
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setIsInCart(!isInCart);
-  };
-
 
   return (
     <div className="product__item">
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`}
+      state={{
+        from,
+        categoryId,
+        productID: id,
+        productTitle: title
+      }}
+      >
         <div className="product__item__image">
           <img
             src={`${import.meta.env.VITE_APP_API_URL}${image}`}
@@ -89,11 +86,11 @@ const [isInCart, setIsInCart] = useState(false);
       <div className="icons">
         <button
           className={`icons__button favorite ${isFavorite ? "active" : ""}`}
-          onClick={toggleFavorite}
+          onClick={handleToggleFavorite}
         ></button>
         <button
           className={`icons__button cart ${isInCart ? "active" : ""}`}
-          onClick={toggleCart}
+          onClick={handleToggleCart}
         ></button>
       </div>
     </div>

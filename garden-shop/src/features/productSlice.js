@@ -7,12 +7,14 @@ const initialState = {
   categoryTitle: '',
   loading: false,
   error: null,
+  product: null,
 };
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
+  async (_,{ rejectWithValue }) => {
     try {
+    
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_URL}/products/all`
       );
@@ -25,15 +27,16 @@ export const fetchProducts = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return error.message;
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchProductsByCategory",
-  async (categoryId) => {
+  async (categoryId, { rejectWithValue }) => {
     try {
+      
       const response = await fetch(
         `${import.meta.env.VITE_APP_API_URL}/categories/${categoryId}`
       );
@@ -46,11 +49,32 @@ export const fetchProductsByCategory = createAsyncThunk(
         products: data.data
       };
     } catch (error) {
-      return error.message;
+      return rejectWithValue(error.message);
     }
   }
 );
 
+export const fetchProductById = createAsyncThunk(
+  "product/fetchById",
+  async (productId, { rejectWithValue }) => {
+    try {
+      
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_API_URL}/products/${productId}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Product not Found !!!");
+      }
+
+      const data = await response.json();
+      return Array.isArray(data) ? data[0] : data;
+      
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const productsSlice = createSlice({
   name: "products",
@@ -66,7 +90,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
+        state.error = action.payload;
       })
       .addCase(fetchProductsByCategory.pending, (state) => {
         state.loading = true;
@@ -78,7 +102,20 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.product = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

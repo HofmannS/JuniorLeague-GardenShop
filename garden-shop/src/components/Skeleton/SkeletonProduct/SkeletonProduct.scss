@@ -1,15 +1,6 @@
-.skeleton__product__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 32px;
-    background: var(--color-bg);
-    padding-bottom: 80px;
-    }
-    
-    .skeleton__product__item {
-      max-width: 316px;
-      height: 422px;
-      background: var(--color-cards);
-      border-radius: var(--radius-big);
-    }
-  
+.skeleton__product__item {
+  max-width: 316px;
+  height: 422px;
+  background: var(--color-cards);
+  border-radius: var(--radius-big);
+}

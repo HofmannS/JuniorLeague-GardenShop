@@ -1,10 +1,12 @@
 import React from 'react'
 import "./Navbar.scss"
 import { NavLink } from 'react-router-dom'
-const Navbar = () => {
+
+const Navbar = ({onDiscountClick}) => {
   return (
     <nav className='navbar'>
-      <button className='navbar__discount-button'>1 day discount!</button>
+      <button className='navbar__discount-button' onClick={onDiscountClick}>
+        1 day discount!</button>
       <ul className='navbar__nav-list'>
         <li> <NavLink to="/">Main Page</NavLink></li>
         <li> <NavLink to="/categories">Categories</NavLink></li>

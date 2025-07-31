@@ -1,5 +1,5 @@
 .header {
-  padding: 30px 0px;
+  padding: 30px 0;
   background-color: var(--color-bg);
 
   &__inner {
@@ -15,28 +15,7 @@
   }
 
   &__logo img {
-    max-height: 68px;
+    max-height: clamp(44px, 10vw, 70px);
     width: auto;
-  }
-
-   &__icons {
-    display: flex;
-    gap: 28px;
-
-    &-favorite,
-    &-cart {
-      background: none;
-      border: none;
-      color: var(--color-txt-black);
-      cursor: pointer;
-
-      &:hover {
-        color: var(--color-green);
-      }
-    }
-  }
-
-  .switch-theme-toggle {
-    margin-left: 20px;
   }
 }

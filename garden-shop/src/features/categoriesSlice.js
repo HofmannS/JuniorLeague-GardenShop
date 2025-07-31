@@ -8,9 +8,9 @@ const initialState ={
 
 export const fetchCategories = createAsyncThunk(
     "categories/fetchCategories",
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
-            await new Promise(resolve => setTimeout(resolve, 6000));
+            
             const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/categories/all`);
              
             if (!response.ok) {
@@ -21,7 +21,7 @@ export const fetchCategories = createAsyncThunk(
 
             return data;
         } catch (error) {
-            return error.message;
+            return rejectWithValue(error.message);
         }
     }
 )
@@ -40,7 +40,7 @@ const categoriesSlice = createSlice({
         }) 
         .addCase(fetchCategories.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.error;
+            state.error = action.payload;
         })
     }
 })

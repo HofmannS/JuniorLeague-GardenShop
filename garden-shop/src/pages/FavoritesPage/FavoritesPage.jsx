@@ -1,14 +1,19 @@
 import React from 'react'
 import ProductsPanel from "@components/ProductsPanel/ProductsPanel"
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs'
+
+
 
 const FavoritesPage = () => {
+
   return (
     <div className='favorites container'>
-      
+      <Breadcrumbs />
       <ProductsPanel
-        title='Liked products'
+        title='Liked products'      
         showOnlyFavorites={true} 
-        hideDiscountFilter={true} 
+        hideDiscountFilter={true}
+        from='favorites'
       />
     </div>
   )

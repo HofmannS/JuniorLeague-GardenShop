@@ -1,38 +1,103 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '@features/categoriesSlice'
 import './Breadcrumbs.scss'
 
 const crumbNames = {
     '/': 'Main page',
-    '/categories': 'Categories'
-    //сюда будем добавлять остальные пути
+    '/categories': 'Categories',
+    '/discount': 'All Sales',
+    '/products': 'All Products',
+    '/favorites': 'Liked products'
 };
-const Breadcrumbs = () => {
-    const { pathname } = useLocation();
+const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
+    const { pathname, state } = useLocation()
+    const params = useParams()
+    const dispatch = useDispatch()
 
-    const breadcrumbsArray = pathname === '/' ? [] : pathname.slice(1).split('/'); //массив сегментов пути
+    const categories = useSelector(state => state.categories.categories)
+    const products = useSelector(state => state.products.products)
+
+    useEffect(() => {
+        if (!categories.length)
+            dispatch(fetchCategories())
+    }, [categories.length, dispatch])
+
+    const getCategoryTitle = id =>
+        categories.find(category => String(category.id) === String(id))?.title || ''
+
+    const getProduct = id =>
+        products.find(product => String(product.id) === String(id))
+
+    const crumbs = [{ name: crumbNames['/'], path: '/' }]
+
+    if (pathname === '/categories') {
+        crumbs.push({ name: crumbNames['/categories'], path: '/categories' })
+    } else if (pathname.startsWith('/category/') && params.categoryId) {
+        crumbs.push({ name: crumbNames['/categories'], path: '/categories' })
+        crumbs.push({
+            name: getCategoryTitle(params.categoryId) || 'Loading...',
+            path: `/category/${params.categoryId}`
+        })
+    } else if (pathname.startsWith('/product/') && params.productId) {
+        if (state?.from === 'favorites') {
+            crumbs.push({ name: crumbNames['/favorites'], path: '/favorites' })
+        } else if (state?.from === 'discount') {
+            crumbs.push({ name: crumbNames['/discount'], path: '/discount' })
+        } else if (state?.from === 'categories') {
+            crumbs.push({ name: crumbNames['/categories'], path: '/categories' })
+            crumbs.push({
+                name: getCategoryTitle(state.categoryId) || 'Loading...',
+                path: `/category/${state.categoryId}`
+            })
+        } else {
+            crumbs.push({ name: crumbNames['/products'], path: '/products' })
+        }
+
+        if (state?.productTitle) {
+            crumbs.push({
+                name: state.productTitle,
+                path: `/product/${params.productId}`
+            })
+        } else {
+            const product = getProduct(params.productId)
+            if (product) {
+                crumbs.push({
+                    name: product.title,
+                    path: `/product/${params.productId}`
+                })
+            } else { //если продукт не найден
+                crumbs.push({
+                    name: 'Product',
+                    path: `/product/${params.productId}`
+                })
+            }
+        }
+    } else if (pathname !== '/') {
+        let builtPath = '' //строящийся путь
+        pathname.slice(1).split('/').forEach(partPath => {  //часть пути
+            builtPath += `/${partPath}`
+            crumbs.push({
+                name: breadcrumbTitle[builtPath] || crumbNames[builtPath] || partPath,
+                path: builtPath
+            })
+        })
+    }
 
     return (
         <div className='breadcrumbs container'>
             <nav className='breadcrumbs'>
-                <Link to={'/'} className='breadcrumbs__link breadcrumbs__item'>{crumbNames['/']}</Link>
-                {breadcrumbsArray.length > 0 && (
-                    <>
-
-                        {breadcrumbsArray.map((breadcrumb, crumbIndex, allBreadcrumbs) => {
-                            const crumbPath = '/' + allBreadcrumbs.slice(0, crumbIndex + 1).join('/');
-                            const isActive = crumbIndex === allBreadcrumbs.length - 1;
-                            const label = crumbNames[crumbPath] || breadcrumb;
-
-                            return isActive ? (
-                                <span key={crumbPath} className='breadcrumbs__current breadcrumbs__item'>{label}</span>
-                            ) : (
-                                <Link key={crumbPath} to={crumbPath} className='breadcrumbs__link breadcrumbs__item'>{label}</Link>
-                            )
-                        })}
-                    </>
-                )
-                }
+                {crumbs.map(({ name: crumbName, path }, index) => {
+                    const isLast = index === crumbs.length - 1
+                    return (
+                        <div key={`${path}`} className={`breadcrumbs__item ${isLast ? 'breadcrumbs__current' : ''}`}>
+                            {isLast ? crumbName : (
+                                <Link to={path} className='breadcrumbs__link'>{crumbName}</Link>
+                            )}
+                        </div>
+                    )
+                })}
             </nav>
         </div>
     )

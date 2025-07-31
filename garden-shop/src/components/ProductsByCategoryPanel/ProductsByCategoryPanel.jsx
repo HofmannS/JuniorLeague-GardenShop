@@ -1,20 +1,24 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '@store/features/productSlice';
+import { fetchProducts } from '@features/productSlice';
 import Panel from '@components/Panel/Panel';
 import ProductCard from '@components/ProductCard/ProductCard';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';
 import FilterSortBar from '@components/FilterSortBar/FilterSortBar';
 
 const ProductsByCategoryPanel = ({ 
-    item__limit, 
+    item_limit, 
     customProducts = null, 
-    title = 'All products'  
+    title = 'All products',
+    from = null,
+    categoryId = null,
+    isLoading = false,
+    error = null
 }) => {
     const dispatch = useDispatch();
 
-    const { products: allProducts, loading, error } = useSelector((state) => state.products);
+    const { products: allProducts } = useSelector((state) => state.products);
     const products = customProducts !== null ? customProducts : allProducts;
     
 
@@ -72,9 +76,9 @@ const ProductsByCategoryPanel = ({
         <Panel
             title={title}
             items={filteredAndSortedProducts}
-            item_limit={item__limit}
-            isLoading={!customProducts && loading}
-            skeleton={<SkeletonProduct products__limit={item__limit} />}
+            item_limit={item_limit}
+            isLoading={isLoading}
+            skeleton={(item_limit) => <SkeletonProduct productsLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard
                     key={item.id}
@@ -84,7 +88,8 @@ const ProductsByCategoryPanel = ({
                     price={item.price}
                     discont_price={item.discont_price}
                     discont_percent={item.discont_percent}
-
+                    from={from}
+                    categoryId={categoryId}
                 />
             )}
         >
