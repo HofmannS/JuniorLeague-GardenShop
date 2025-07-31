@@ -29,16 +29,16 @@
         width: 48px;
         height: 38px;
         border: none;
-        background: transparent url('@/assets/images/icons/basket=like.png') center/contain no-repeat;
+        background: transparent url('@/assets/Images/icons/basket=like.png') center/contain no-repeat;
         cursor: pointer;
         transition: background-image 0.3s ease;
 
         &:hover {
-            background-image: url('@/assets/images/icons/basket=likehover.png');
+            background-image: url('@/assets/Images/icons/basket=likehover.png');
         }
 
         &--active {
-            background-image: url('@/assets/images/icons/basket=liked.png');
+            background-image: url('@/assets/Images/icons/basket=liked.png');
         }
 
         @media (max-width: 480px) {
@@ -116,6 +116,7 @@
         flex-direction: column;
     }
 
+    
     &__price {
         display: flex;
         align-items: flex-start;
@@ -163,6 +164,7 @@
         height: clamp(2.9375rem, 4vw, 3.625rem);
         font-size: clamp(1.125rem, 1.5vw, 1.25rem);
     }
+
 
     &__button {
         flex: 0 0 auto;
