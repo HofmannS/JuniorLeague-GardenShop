@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '@store/features/productSlice';
+import { fetchProducts } from '@features/productSlice';
 import Panel from '@components/Panel/Panel';
 import ProductCard from '@components/ProductCard/ProductCard';
 import SkeletonProduct from '@components/Skeleton/SkeletonProduct/SkeletonProduct';

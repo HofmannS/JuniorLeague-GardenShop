@@ -3,7 +3,7 @@ import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs'
 import ProductDetails from '@components/ProductDetails/ProductDetails'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductById } from '@store/features/productSlice'
+import { fetchProductById } from '@features/productSlice'
 
 const ProductDetailsPage = () => {
 

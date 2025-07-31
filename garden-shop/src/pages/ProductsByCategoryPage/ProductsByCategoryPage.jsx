@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchProductsByCategory } from '@store/features/productSlice';
+import { fetchProductsByCategory } from '@features/productSlice';
 import ProductsByCategoryPanel from '@components/ProductsByCategoryPanel/ProductsByCategoryPanel';
 import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs';
 
