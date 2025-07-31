@@ -96,12 +96,10 @@ const ProductDetails = ({ product, loading, error }) => {
                         <p className='product-details__value'>{quantity}</p>
                         <button className='product-details__button' onClick={() => handleQuantityChange(1)} ></button>
                     </div>
-
                     <button className='product-details__button-cart' onClick={handleAddToCart}>Add to cart</button>
                 </div>
-
-               
             </div>
+
             <div className='product-details__description'>
                     <h2>Description</h2>
                     {isDescriptionOpen || !isLongDescription ? product.description : shortDescription + '...'}
@@ -111,6 +109,7 @@ const ProductDetails = ({ product, loading, error }) => {
                         </button>
                     )}
                 </div>
+
             {isModalOpen && (
                 <div className='product-details__modal' onClick={() => setIsModalOpen(false)}>
                     <img src={imageUrl} alt={product.title} className='product-details__modal-image' onClick={(e) => e.stopPropagation()} />

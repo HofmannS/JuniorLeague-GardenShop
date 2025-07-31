@@ -1,4 +1,3 @@
-import BannerImage from '../../assets/Banner.jpg'
 import { Link } from 'react-router-dom'
 import "./Banner.scss"
 
