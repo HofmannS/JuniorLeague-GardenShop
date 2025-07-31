@@ -5,7 +5,7 @@ function SkeletonProduct({productLimit = 10}) {
   return (
     <>
     {Array.from({ length: productLimit }).map((_, index) => (
-      <div className="skeleton__product__item" key={index}></div>
+      <div className="skeleton-product__item" key={index}></div>
     ))}
   </>
   )
