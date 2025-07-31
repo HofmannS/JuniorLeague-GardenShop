@@ -7,6 +7,8 @@
 
 TЗ: [Техническое задание (Google Docs)](https://docs.google.com/document/d/1aQMHAwVEKPJSSr61zbxd0uj2auIZdlIG/edit?tab=t.0)
 
+API: [API](https://exam-server-5c4e.onrender.com/)
+
 Задеплоенная реализация (versel.com): [_ссылка на проект_](http://juniorleague-gardenshop.vercel.app/)
 
 # Общее описание проекта:
@@ -88,7 +90,7 @@ TЗ: [Техническое задание (Google Docs)](https://docs.google.c
 
 # Авторы проекта:  
 ## Sergej Hofmann
-**Ссылка на** [LinkedIn](https://www.linkedin.com/in/sergej-hofmann)  **Ссылка на** [GitHub]
+**Ссылка на** [LinkedIn](https://www.linkedin.com/in/sergej-hofmann)  **Ссылка на** [GitHub](https://github.com/HofmannS)
 
 **Реализованные фичи:**
 
@@ -102,7 +104,7 @@ TЗ: [Техническое задание (Google Docs)](https://docs.google.c
 
 
 ## Lena Konovalova
-**Ссылка на** [GitHub]
+**Ссылка на** [GitHub](https://github.com/helenkonovalova)
 
 **Реализованные фичи:**
 - Главная страница: Хедер
@@ -113,7 +115,7 @@ TЗ: [Техническое задание (Google Docs)](https://docs.google.c
 - Мобильная адаптивность
 
 ## Pavlo Maksymov
-**Ссылка на** [LinkedIn](https://www.linkedin.com/in/pavlo-maksymoff), **Ссылка на** [GitHub]
+**Ссылка на** [LinkedIn](https://www.linkedin.com/in/pavlo-maksymoff), **Ссылка на** [GitHub](https://github.com/PavelMaximov)
 
 **Реализованные фичи:**
 - Главная страница: Хедер, Баннер, Футер 
@@ -123,7 +125,7 @@ TЗ: [Техническое задание (Google Docs)](https://docs.google.c
 - Мобильная адаптивность
 
 ## Olha Halaktionova
-**Ссылка на** [GitHub](https://github.com/galaktionovaolga?tab=repositories)
+**Ссылка на** [GitHub](https://github.com/galaktionovaolga)
 
 **Реализованные фичи:**
 - Главная страница: Создание формы для получения скидки 5%
