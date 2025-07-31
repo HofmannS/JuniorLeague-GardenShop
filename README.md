@@ -7,7 +7,7 @@
 
 TЗ: [Техническое задание (Google Docs)](https://docs.google.com/document/d/1aQMHAwVEKPJSSr61zbxd0uj2auIZdlIG/edit?tab=t.0)
 
-Задеплоенная реализация (render.com): _ссылка будет добавлена_
+Задеплоенная реализация (versel.com): [_ссылка на проект_](http://juniorleague-gardenshop.vercel.app/)
 
 # Общее описание проекта:
 
