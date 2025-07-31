@@ -44,26 +44,26 @@
         transition: background-image 0.3s ease;
 
         &.favorite {
-            background-image: url('../../assets/Images/icons/basket=like.png');
+            background-image: url('../../assets/images/icons/basket=like.png');
 
             &:hover {
-            background-image: url('../../assets/Images/icons/basket=likehover.png');
+            background-image: url('../../assets/images/icons/basket=likehover.png');
             }
 
             &.active {
-            background-image: url('../../assets/Images/icons/basket=liked.png');
+            background-image: url('../../assets/images/icons/basket=liked.png');
             }
         }
 
         &.cart {
-            background-image: url('../../assets/Images/icons/basket=card-empty.png');
+            background-image: url('../../assets/images/icons/basket=card-empty.png');
 
             &:hover {
-            background-image: url('../../assets/Images/icons/basket=card-hover.png');
+            background-image: url('../../assets/images/icons/basket=card-hover.png');
             }
 
             &.active {
-            background-image: url('../../assets/Images/icons/basket=card-full.png');
+            background-image: url('../../assets/images/icons/basket=card-full.png');
             }
         }
 
