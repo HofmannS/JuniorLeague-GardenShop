@@ -12,11 +12,13 @@ const ProductsByCategoryPanel = ({
     customProducts = null, 
     title = 'All products',
     from = null,
-    categoryId = null
+    categoryId = null,
+    isLoading = false,
+    error = null
 }) => {
     const dispatch = useDispatch();
 
-    const { products: allProducts, loading, error } = useSelector((state) => state.products);
+    const { products: allProducts } = useSelector((state) => state.products);
     const products = customProducts !== null ? customProducts : allProducts;
     
 
@@ -75,7 +77,7 @@ const ProductsByCategoryPanel = ({
             title={title}
             items={filteredAndSortedProducts}
             item_limit={item_limit}
-            isLoading={!customProducts && loading}
+            isLoading={isLoading}
             skeleton={(item_limit) => <SkeletonProduct productsLimit={item_limit}/>}
             renderItem={(item) => (
                 <ProductCard
