@@ -11,10 +11,15 @@ const Panel = ({
   buttonText,
   link,
   isLoading,
+  error,
   skeleton,
   children,
 }) => {
   const visibleItems = item_limit ? items.slice(0, item_limit) : items;
+
+  if (error) {
+    return <div className="panel__error">Error: {error}</div>;
+  }
 
   return (
     <div className="container">

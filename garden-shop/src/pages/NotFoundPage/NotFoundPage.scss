@@ -1,104 +1,128 @@
-.not-found__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 760px;
-    //margin-top: 80px;
-    margin-bottom: 80px;
-}
-
-.not-found__pictures {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    gap: 16px;
-    align-items: center;
-    justify-items: center;
-    overflow: hidden;
-}
-
-.not-found__image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-
-    &:nth-child(odd) {
+.not-found {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 80px;
+      max-width: 760px;
+    }
+  
+    &__pictures {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 16px;
+      align-items: center;
+      justify-items: center;
+      overflow: hidden;
+    }
+  
+    &__image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+  
+      &:nth-child(odd) {
         max-width: 179px;
-    }
-
-    &:nth-child(even) {
+      }
+  
+      &:nth-child(even) {
         max-width: 300px;
+      }
     }
-}
-
-.not-found__text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 32px;
-}
-
-.not-found__title {
-    font-size: 64px;
-    font-weight: 700;
-    color: var(--color-txt-black);
-    margin-top: 0;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
-.not-found__description {
-    line-height: 130%;
-    margin-bottom: 32px;
-    text-align: center;
-}
-
-.not-found__description p {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color-txt-muted);
-}
-
-.not-found__button {
-    padding: 16px 56px;
-    font-size: 20px;
-    font-weight: 600;
-    background-color: var(--color-green);
-    color: var(--color-txt-white);
-    border: none;
-    border-radius: var(--radius-small);
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .not-found__title {font-size: 56px;}
-
-    .not-found__image {
-        &:nth-child(odd) {max-width: 159px;}
-        &:nth-child(even) {max-width: 267px;}
+  
+    &__text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 32px;
+      text-align: center;
     }
-}
-
-@media (max-width: 480px) {
-    .not-found__title {font-size: 48px;}
-
-    .not-found__description p {font-size: 18px;}
-
-    .not-found__button {padding: 12px 52px; font-size: 18px;}
-
-    .not-found__image {
-        &:nth-child(odd) {max-width: 108px;}
-        &:nth-child(even) {max-width: 181px;}
+  
+    &__title {
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--color-txt-black);
+      margin: 0 0 16px;
     }
-}
-
-@media (max-width: 360px) {
-    .not-found__title {font-size: 40px;}   
-
-    .not-found__image {
-        &:nth-child(odd) {max-width: 79px;}
-        &:nth-child(even) {max-width: 132px;}
+  
+    &__description {
+      line-height: 130%;
+      margin-bottom: 32px;
     }
-}
+  
+    &__paragraph {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-txt-muted);
+    }
+  
+    &__button {
+      padding: 16px 56px;
+      font-size: 20px;
+      font-weight: 600;
+      background-color: var(--color-green);
+      color: var(--color-txt-white);
+      border: none;
+      border-radius: var(--radius-small);
+      cursor: pointer;
+    }
+  
+    @media (max-width: 768px) {
+      &__title {
+        font-size: 56px;
+      }
+  
+      &__image {
+        &:nth-child(odd) {
+          max-width: 159px;
+        }
+  
+        &:nth-child(even) {
+          max-width: 267px;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      &__title {
+        font-size: 48px;
+      }
+  
+      &__paragraph {
+        font-size: 18px;
+      }
+  
+      &__button {
+        padding: 12px 52px;
+        font-size: 18px;
+      }
+  
+      &__image {
+        &:nth-child(odd) {
+          max-width: 108px;
+        }
+  
+        &:nth-child(even) {
+          max-width: 181px;
+        }
+      }
+    }
+  
+    @media (max-width: 360px) {
+      &__title {
+        font-size: 40px;
+      }
+  
+      &__image {
+        &:nth-child(odd) {
+          max-width: 79px;
+        }
+  
+        &:nth-child(even) {
+          max-width: 132px;
+        }
+      }
+    }
+  }
+  
