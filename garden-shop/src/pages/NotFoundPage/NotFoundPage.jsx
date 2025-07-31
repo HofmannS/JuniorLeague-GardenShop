@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import FourImage from "../../assets/images/4.png"
+import FourImage from "../../assets/images/four.png"
 import CactusImage from "../../assets/images/Cactus.png"
 import "./NotFoundPage.scss"
 
