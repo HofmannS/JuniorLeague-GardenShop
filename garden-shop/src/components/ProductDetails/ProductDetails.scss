@@ -116,48 +116,7 @@
         flex-direction: column;
     }
 
-    &__header {
-        grid-area: header;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    &__title {
-        font-size: clamp(28px, 2.5vw + 1rem, 40px);
-        line-height: clamp(1.1, 1.2, 1.4);
-        letter-spacing: 3%;
-        font-weight: 700;
-        color: var(--color-txt-black);
-
-    }
-
-    &__favorite {
-        width: 48px;
-        height: 38px;
-        border: none;
-        background: transparent;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        cursor: pointer;
-        transition: background-image 0.3s ease;
-        background-image: url('@/assets/images/icons/basket=like.png');
-
-        &:hover {
-            background-image: url('@/assets/images/icons/basket=likehover.png');
-        }
-
-        &.active {
-            background-image: url('@/assets/images/icons/basket=liked.png');
-        }
-
-        @media (max-width: 480px) {
-            width: 37px;
-            height: 32px;
-        }
-    }
-
+    
     &__price {
         display: flex;
         align-items: flex-start;
