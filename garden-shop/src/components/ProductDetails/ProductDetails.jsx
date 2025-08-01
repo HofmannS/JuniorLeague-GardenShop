@@ -21,6 +21,7 @@ const ProductDetails = ({ product, loading, error }) => {
     return <NotFoundPage />
   }
 
+
   const imageUrl = `${import.meta.env.VITE_APP_API_URL}${product.image}`
   const discontPercent =
     product.discont_price && product.price
