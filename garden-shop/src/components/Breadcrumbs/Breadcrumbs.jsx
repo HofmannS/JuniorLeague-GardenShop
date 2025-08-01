@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '@features/categoriesSlice'
+import { fetchProductById } from '@features/productSlice'
 import './Breadcrumbs.scss'
 
 const crumbNames = {
@@ -21,7 +22,22 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
     const { product, error } = useSelector(state => state.products);
 
     const isInvalidProductPage = pathname.startsWith('/product/') && (error || !product || !product.id);
+
+    const getProductFromList = (products, id) =>
+        products.find(product => String(product.id) === String(id));
     
+    useEffect(() => {
+        const productInList = getProductFromList(products, params.productId);
+        if (
+            pathname.startsWith('/product/') &&
+            params.productId &&
+            !productInList &&
+            !product
+        ) {
+            dispatch(fetchProductById(params.productId));
+        }
+    }, [pathname, params.productId, dispatch, products, product]);
+
     useEffect(() => {
         if (!categories.length)
             dispatch(fetchCategories())
@@ -58,25 +74,14 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
             crumbs.push({ name: crumbNames['/products'], path: '/products' })
         }
 
-        if (state?.productTitle) {
-            crumbs.push({
-                name: state.productTitle,
-                path: `/product/${params.productId}`
-            })
-        } else {
-            const product = getProduct(params.productId)
-            if (product) {
-                crumbs.push({
-                    name: product.title,
-                    path: `/product/${params.productId}`
-                })
-            } else {
-                crumbs.push({
-                    name: 'Product',
-                    path: `/product/${params.productId}`
-                })
-            }
-        }
+        const productFromList = getProduct(params.productId);
+        const productTitle = state?.productTitle || productFromList?.title || product?.title;
+
+        crumbs.push({
+            name: productTitle || 'Loading...',
+            path: `/product/${params.productId}`
+        });
+
     } else if (pathname !== '/') {
         let builtPath = ''
         pathname.slice(1).split('/').forEach(partPath => {
@@ -90,7 +95,7 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
 
     if (isInvalidProductPage) {
         return null;
-      }
+    }
 
     return (
         <div className='breadcrumbs container'>
