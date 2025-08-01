@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import handbagIconDark from "@/assets/images/icons/bag-default.svg";
 import favoriteIconDark from "@/assets/images/icons/heart-default.svg";
 import handbagIconLight from "@/assets/images/icons/bag-default-light.svg";
-import favoriteIconLight from "@/assets/images/icons/Heart-default-light.svg";
+import favoriteIconLight from "@/assets/images/icons/heart-default-light.svg";
 
 const HeaderIcons = () => {
   const [favoritesCount, setFavoritesCount] = useState(0);
