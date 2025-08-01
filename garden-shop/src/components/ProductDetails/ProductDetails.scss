@@ -71,6 +71,50 @@
         color: var(--color-txt-black);
     }
 
+    &__favorite {
+        width: 48px;
+        height: 38px;
+        border: none;
+        background: transparent;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        transition: background-image 0.3s ease;
+        background-image: url('@/assets/images/icons/product=heart-default.svg');
+
+        &:hover {
+            background-image: url('@/assets/images/icons/product=heart-active.svg');
+        }
+
+        &--active {
+            background-image: url('@/assets/images/icons/product=heart-active.svg');
+        }
+
+        @media (max-width: 480px) {
+            display: none;
+        }
+    }
+
+    &__price {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &__price-wrapper {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        gap: 32px;
+    }
+
+    &__price-new {
+        font-weight: 700;
+        font-size: clamp(2.5rem, 5vw + 0.5rem, 4rem);
+        line-height: 1.1;
+        color: var(--color-txt-black);
+    }
+
     &__price-old {
         font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
         text-decoration: line-through;
