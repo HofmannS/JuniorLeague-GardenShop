@@ -18,7 +18,10 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
 
     const categories = useSelector(state => state.categories.categories)
     const products = useSelector(state => state.products.products)
+    const { product, error } = useSelector(state => state.products);
 
+    const isInvalidProductPage = pathname.startsWith('/product/') && (error || !product || !product.id);
+    
     useEffect(() => {
         if (!categories.length)
             dispatch(fetchCategories())
@@ -84,6 +87,10 @@ const Breadcrumbs = ({ breadcrumbTitle = {} }) => {
             })
         })
     }
+
+    if (isInvalidProductPage) {
+        return null;
+      }
 
     return (
         <div className='breadcrumbs container'>
