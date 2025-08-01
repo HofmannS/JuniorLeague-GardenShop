@@ -71,9 +71,6 @@
         color: var(--color-txt-black);
     }
 
-
-
-    
     &__favorite {
         width: 48px;
         height: 38px;
@@ -84,6 +81,7 @@
         background-position: center;
         cursor: pointer;
         transition: background-image 0.3s ease;
+
         background-image: url("@/assets/images/icons/product=heart-default.svg");
 
         &:hover {
