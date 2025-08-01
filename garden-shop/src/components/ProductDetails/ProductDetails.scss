@@ -52,24 +52,22 @@
     }
 
     
-    &__price {
+    &__header {
+        grid-area: header;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    &__price-wrapper {
-        position: relative;
-        display: flex;
-        align-items: baseline;
-        gap: 32px;
-    }
-
-    &__price-new {
+    &__title {
+        font-size: clamp(28px, 2.5vw + 1rem, 40px);
+        line-height: clamp(1.1, 1.2, 1.4);
+        letter-spacing: 3%;
         font-weight: 700;
-        font-size: clamp(2.5rem, 5vw + 0.5rem, 4rem);
-        line-height: 1.1;
         color: var(--color-txt-black);
+
     }
+
 
     &__favorite {
         width: 48px;
