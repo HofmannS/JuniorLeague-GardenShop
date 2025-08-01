@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '@features/cartSlice'
 import { toggleFavorite } from '@features/favoriteSlice'
 import './ProductDetails.scss'
+import NotFoundPage from '@pages/NotFoundPage/NotFoundPage'
 
 const ProductDetails = ({ product, loading, error }) => {
   const [quantity, setQuantity] = useState(1)
@@ -13,9 +14,12 @@ const ProductDetails = ({ product, loading, error }) => {
   const favorites = useSelector(state => state.favorites)
   const isFavorite = favorites.includes(product?.id)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
-  if (!product) return null
+  const isValidProduct = product && product.id && product.title && product.price
+  if (loading) return <div></div>
+  
+  if (error || !isValidProduct) { 
+    return <NotFoundPage />
+  }
 
   const imageUrl = `${import.meta.env.VITE_APP_API_URL}${product.image}`
   const discontPercent =
