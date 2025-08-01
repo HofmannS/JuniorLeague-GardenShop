@@ -21,6 +21,7 @@ const ProductDetails = ({ product, loading, error }) => {
     return <NotFoundPage />
   }
 
+
   const imageUrl = `${import.meta.env.VITE_APP_API_URL}${product.image}`
   const discontPercent =
     product.discont_price && product.price
@@ -117,7 +118,7 @@ const ProductDetails = ({ product, loading, error }) => {
           <img
             src={imageUrl}
             alt={product.title}
-            className='product-details__modal-image'
+            className="product-details__modal-image"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
