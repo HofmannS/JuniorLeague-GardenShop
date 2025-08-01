@@ -51,20 +51,24 @@
         flex-direction: column;
     }
 
-    &__header {
-        grid-area: header;
+    
+    &__price {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        align-items: flex-start;
     }
 
-    &__title {
-        font-size: clamp(28px, 2.5vw + 1rem, 40px);
-        line-height: clamp(1.1, 1.2, 1.4);
-        letter-spacing: 3%;
-        font-weight: 700;
-        color: var(--color-txt-black);
+    &__price-wrapper {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        gap: 32px;
+    }
 
+    &__price-new {
+        font-weight: 700;
+        font-size: clamp(2.5rem, 5vw + 0.5rem, 4rem);
+        line-height: 1.1;
+        color: var(--color-txt-black);
     }
 
     &__favorite {
@@ -88,8 +92,7 @@
         }
 
         @media (max-width: 480px) {
-            width: 37px;
-            height: 32px;
+            display: none;
         }
     }
 
