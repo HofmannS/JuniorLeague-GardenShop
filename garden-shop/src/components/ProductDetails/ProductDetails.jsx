@@ -118,7 +118,7 @@ const ProductDetails = ({ product, loading, error }) => {
           <img
             src={imageUrl}
             alt={product.title}
-            className="product-details__modal-image"
+            className='product-details__modal-image'
             onClick={(e) => e.stopPropagation()}
           />
         </div>
