@@ -88,14 +88,14 @@
   transition: background-image 0.3s ease;
 
   &.favorite {
-    background-image: url('../../assets/images/icons/basket=like.png');
+    background-image: url("../../assets/images/icons/product=heart-default.svg");
 
     &:hover {
-      background-image: url('../../assets/images/icons/basket=likehover.png');
+        background-image: url("../../assets/images/icons/product=heart-hover.svg");
     }
 
-    &.active {
-      background-image: url('../../assets/images/icons/basket=liked.png');
+    &.is-active {
+        background-image: url("../../assets/images/icons/product=heart-active.svg");
     }
   }
 
