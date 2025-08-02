@@ -9,7 +9,7 @@ TЗ: [Техническое задание (Google Docs)](https://docs.google.c
 
 API: [API](https://exam-server-5c4e.onrender.com/)
 
-Задеплоенная реализация (versel.com): [_ссылка на проект_](http://juniorleague-gardenshop.vercel.app/)
+Задеплоенная реализация (versel.com): [_ссылка на проект_](http://junior-league-garden-shop.vercel.app/)
 
 # Общее описание проекта:
 
